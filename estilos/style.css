@@ -1,0 +1,106 @@
+.cm-body {
+    width: 100%;
+    user-select: none;
+    font-family: Arial, sans-serif;
+    width: 100%;
+    height: 100%;
+}
+
+.criarconta {
+    margin-left: auto;
+    margin-right: 0px;
+    margin-top: 12px;
+}
+
+.cm-container {
+    margin-top: 10%;
+    width: 90%;
+    margin-left: 5%;
+}
+
+.cm-card{
+    max-width: 1200px;
+    margin-bottom: 28px;
+}
+
+p{
+    font-size: 18px;
+}
+
+.titulo-h5{
+    font-size: 30px;
+    font-weight: normal;
+}
+
+#add-news{
+    margin-left: auto;
+    margin-right: 0px;
+}
+
+.vh-fundo {
+    background-color: darkgrey;
+}
+
+.vh-cor {
+    color: #5E17EB;
+}
+
+.form-control::placeholder {
+    color: #6c757d; 
+}
+
+
+.form-floating .form-control:focus::placeholder {
+    color: #6c757d;
+}
+
+.form-floating .form-label {
+    color: #6c757d;
+}
+
+.btnt7{
+    margin-bottom: 0;
+    margin-top: auto;
+}
+
+.t7Tamanho{
+    font-size: 14px;
+}
+
+.modal-overlay {
+    position: fixed; /* Fixa no viewport */
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo semitransparente */
+    z-index: 999; /* Camada acima de outros elementos */
+    top: 0px;
+    pointer-events: all;
+    margin: 0px;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.modalNoticia {
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    height: auto;
+    padding: 4px;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    pointer-events: auto;
+}
+
+#historicoContainer {
+    flex-grow: 1;
+    overflow-y: auto; /* Adiciona scroll apenas no conteúdo */
+    max-height: 50vh; /* Limita a altura do conteúdo */
+    padding: 8px;
+}
+
+.vh-img {
+    width: 200px; 
+    height: 200px; 
+    object-fit: cover;
+}

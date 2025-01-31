@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+  <link rel="stylesheet" href="../estilos/style.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+
+<body class="vh-fundo">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark border-bottom border-body" data-bs-theme="dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html">RedeDevs</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Categorias
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#" id="semFiltro">Todos</a></li>
+              <li><a class="dropdown-item" href="#" id="filtrarInovacao">Inovações</a></li>
+              <li><a class="dropdown-item" href="#" id="filtrarLinguagens">Linguagens</a></li>
+              <li><a class="dropdown-item" href="#" id="filtrarIA">IA</a></li>
+              <li><a class="dropdown-item" href="#" id="filtrarVagas">Vagas</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="sobre.html">Sobre Portal</a>
+          </li>
+          <li class="nav-item" id="login">
+            <a class="nav-link" href="login.html">Login</a>
+          </li>
+          <li class="nav-item dropdown" id="perfil">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Perfil
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="perfil.html">Editar</a></li>
+              <li><a class="dropdown-item" href="#" id="historico">Histórico</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" id="logout" href="#">Sair</a></li>
+            </ul>
+          </li>
+        </ul>
+        <button type="button" id="add-news" class="btn btn-outline-light me-3  mb-1">
+          Adicionar Notícia
+        </button>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="pesquisa">
+          <button class="btn btn-outline-light" type="submit" id="btnPesquisa">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+  <div class="cm-container d-flex flex-column mt-5 justify-content-center align-items-center">
+
+    <div class="modal-overlay justify-content-center align-items-center d-none d-flex " id="modalNoticia">
+      <div class="modalNoticia">
+        <form action="#" method="post" id="form-cadastro">
+          <div class="row justify-content-center">
+            <div class="col-10">
+              <h5 class="mt-3">Publicar uma Notícia</h5>
+              <div class="mb-3">
+                <label for="titulo" class="form-label">Titulo</label>
+                <input type="text" id="titulo" name="titulo" class="form-control" required>
+              </div>
+              <div class="mb-3">
+                <label for="subtitulo" class="form-label">Subtitulo</label>
+                <input type="text" id="subtitulo" name="subtitulo" class="form-control" required>
+              </div>
+              <div class="mb-3">
+                <label for="categoria" class="form-label">Categorias</label>
+                <select class="form-select" id="categoria" aria-label="Default select example" required>
+                  <option value="0" selected>Selecione</option>
+                  <option value="1">Inovações</option>
+                  <option value="2">Linguagens</option>
+                  <option value="3">IA</option>
+                  <option value="4">Vagas</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="conteudo" class="form-label">Conteudo</label>
+                <input type="text" id="conteudo" name="conteudo" class="form-control" required>
+              </div>
+              <div class="mb-3">
+                <label for="autor" class="form-label">Autor</label>
+                <input type="text" id="autor" name="autor" class="form-control" required>
+              </div>
+              <div class="mb-3">
+                <label for="img" class="form-label">Imagem</label>
+                <input type="text" id="img" name="img" class="form-control" required>
+              </div>
+              <div class="mb-3">
+                <button type="button" class="btn btn-secondary" id="fechar">Fechar</button>
+                <button type="button" class="btn btn-primary ms-3" id="salvar">Salvar</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="modal-overlay d-none justify-content-center align-items-center d-flex" id="modalAlertaExcluir">
+      <div class="modalNoticia" style="width: 300px;">
+        <div>
+          <h5 class="p-2">Deseja exluir esta noticia?</h5>
+        </div>
+        <div class="p-2">
+          <button type="button" class="btn btn btn-primary" id="cancelarExcluir">Fechar</button>
+          <button type="button" class="btn btn-danger" id="excluirNoticia">Excluir</button>
+        </div>
+      </div>
+    </div>
+    <div class="modal-overlay justify-content-center align-items-center d-flex d-none" id="modalAlertaEditar">
+      <div class="modalNoticia">
+        <form action="#" method="post" id="form-cadastro">
+          <div class="row justify-content-center">
+            <div class="col-10">
+              <h5 class="mt-3">Deseja editar este notícia?</h5>
+              <div class="mb-3">
+                <label for="titulo" class="form-label">Titulo</label>
+                <input type="text" id="tituloEdit" class="form-control" required>
+              </div>
+              <div class="mb-3">
+                <label for="subtitulo" class="form-label">Subtitulo</label>
+                <input type="text" id="subtituloEdit" class="form-control" required>
+              </div>
+              <div class="mb-3">
+                <label for="categoria" class="form-label">Categorias</label>
+                <select class="form-select" id="categoriaEdit" aria-label="Default select example" required>
+                  <option value="0" selected>Selecione</option>
+                  <option value="1">Inovações</option>
+                  <option value="2">Linguagens</option>
+                  <option value="3">IA</option>
+                  <option value="4">Vagas</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="conteudo" class="form-label">Conteudo</label>
+                <input type="text" id="conteudoEdit" class="form-control" required>
+              </div>
+              <div class="mb-3">
+                <label for="autor" class="form-label">Autor</label>
+                <input type="text" id="autorEdit" class="form-control" required>
+              </div>
+              <div class="mb-3">
+                <label for="img" class="form-label">Imagem</label>
+                <input type="text" id="imgEdit" class="form-control" required>
+              </div>
+              <div class="mb-3">
+                <button type="button" class="btn btn btn-primary" id="cancelarEdit">Fechar</button>
+                <button type="button" class="btn btn-warning" id="salvarEdit">Salvar</button>
+              </div>
+            </div>
+          </div>
+
+        </form>
+
+      </div>
+
+    </div>
+    <div class="modal-overlay d-none justify-content-center align-items-center d-flex" id="modalHistorico">
+      <div class="modalNoticia">
+        <h5 class="p-4">Seu Histórico</h5>
+
+        <div class="p-0 ms-4" id="historicoContainer">
+
+        </div>
+        <div class="p-4">
+          <button class="btn btn-primary" id="fecharHist">Fechar</button>
+        </div>
+      </div>
+    </div>
+    <div id="containerCard">
+
+
+    </div>
+    <div id="paginacaoContainer" class="d-flex justify-content-center mt-1">
+
+
+    </div>
+  </div>
+  <script src="../scripts/navbar.js"></script>
+  <script src="../scripts/index.js"></script>
+
+</body>
+
+</html>
