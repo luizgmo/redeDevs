@@ -55,9 +55,7 @@
             </ul>
           </li>
         </ul>
-        <button type="button" id="add-news" class="btn btn-outline-light me-3  mb-1">
-          Adicionar Notícia
-        </button>
+        
         <form class="d-flex" role="search">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="pesquisa">
           <button class="btn btn-outline-light" type="submit" id="btnPesquisa">Search</button>
@@ -96,10 +94,6 @@
                 <input type="text" id="conteudo" name="conteudo" class="form-control" required>
               </div>
               <div class="mb-3">
-                <label for="autor" class="form-label">Autor</label>
-                <input type="text" id="autor" name="autor" class="form-control" required>
-              </div>
-              <div class="mb-3">
                 <label for="img" class="form-label">Imagem</label>
                 <input type="text" id="img" name="img" class="form-control" required>
               </div>
@@ -130,11 +124,11 @@
             <div class="col-10">
               <h5 class="mt-3">Deseja editar este notícia?</h5>
               <div class="mb-3">
-                <label for="titulo" class="form-label">Titulo</label>
+                <label for="tituloEdit" class="form-label">Titulo</label>
                 <input type="text" id="tituloEdit" class="form-control" required>
               </div>
               <div class="mb-3">
-                <label for="subtitulo" class="form-label">Subtitulo</label>
+                <label for="subtituloEdit" class="form-label">Subtitulo</label>
                 <input type="text" id="subtituloEdit" class="form-control" required>
               </div>
               <div class="mb-3">
@@ -148,15 +142,11 @@
                 </select>
               </div>
               <div class="mb-3">
-                <label for="conteudo" class="form-label">Conteudo</label>
+                <label for="conteudoEdit" class="form-label">Conteudo</label>
                 <input type="text" id="conteudoEdit" class="form-control" required>
               </div>
               <div class="mb-3">
-                <label for="autor" class="form-label">Autor</label>
-                <input type="text" id="autorEdit" class="form-control" required>
-              </div>
-              <div class="mb-3">
-                <label for="img" class="form-label">Imagem</label>
+                <label for="imgEdit" class="form-label">Imagem</label>
                 <input type="text" id="imgEdit" class="form-control" required>
               </div>
               <div class="mb-3">
@@ -183,12 +173,15 @@
         </div>
       </div>
     </div>
+    <button type="button" id="add-news" class="btn btn-outline-light me-3 mb-1">
+          Fazer Publicação
+    </button>
     <div id="containerCard">
-
+      
 
     </div>
     <div id="paginacaoContainer" class="d-flex justify-content-center mt-1">
-
+      
 
     </div>
   </div>

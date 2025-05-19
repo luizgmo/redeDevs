@@ -1,6 +1,11 @@
+body{
+    -webkit-user-select: none; /* Safari, Chrome */
+    -moz-user-select: none;    /* Firefox */
+    -ms-user-select: none;     /* Internet Explorer */
+    user-select: none;         /* Padrão */
+}
+
 .cm-body {
-    width: 100%;
-    user-select: none;
     font-family: Arial, sans-serif;
     width: 100%;
     height: 100%;
@@ -33,8 +38,7 @@ p{
 }
 
 #add-news{
-    margin-left: auto;
-    margin-right: 0px;
+    display: block;
 }
 
 .vh-fundo {

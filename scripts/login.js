@@ -25,7 +25,6 @@ if(!criado) {
         telefone: "(16) 99555-4367",
         email: "cauanmendes@admin.com",
         senha: "123",
-        admin: true,
         registro: [],
         fotoperfil: "https://voxnews.com.br/wp-content/uploads/2017/04/unnamed.png"
     }
@@ -35,9 +34,6 @@ if(!criado) {
     localStorage.setItem("usuarios", JSON.stringify(objUsuarios));
 
 }
-
-
-
 
 formLogin.addEventListener('submit', function (e) {
     e.preventDefault();

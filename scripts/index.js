@@ -17,6 +17,7 @@ if (localStorage.getItem("usuarios") === null) {
 let objUsuarios = JSON.parse(localStorage.getItem("usuarios"));
 
 
+
 addNews.addEventListener("click", () => {
     modal.classList.remove("d-none");
     modal.classList.add("d-block");
@@ -27,15 +28,6 @@ modalFechar.addEventListener("click", () => {
     modal.classList.add("d-none");
 })
 
-if (usuario === null) {
-    addNews.style.display = "none";
-}
-else if (usuario.admin) {
-    addNews.style.display = '';
-} else {
-    addNews.style.display = 'none';
-}
-
 if (localStorage.getItem("noticias") === null) {
     localStorage.setItem("noticias", JSON.stringify([]));
 }
@@ -44,22 +36,6 @@ let objNoticias = JSON.parse(localStorage.getItem("noticias"));
 
 loadNews(objNoticias);
 
-document.getElementById("autor").addEventListener("input", () => mascaraNome(document.getElementById("autor").value));
-function mascaraNome(nome) {
-
-    let texto = nome;
-    let textoF = "";
-
-    for (let index = 0; index < texto.length; index++) {
-
-        if (isNaN(texto[index]) || texto[index] === " ") {
-            textoF += texto[index];
-        }
-    }
-
-    document.getElementById("autor").value = textoF;
-
-};
 
 function mascaraurl(url) {
     let temp = "";
@@ -83,7 +59,6 @@ btnSalvar.addEventListener("click", () => {
     let subtituloValor = document.getElementById("subtitulo").value
     let categoriaValor = document.getElementById("categoria").value
     let conteudoValor = document.getElementById("conteudo").value
-    let autorValor = document.getElementById("autor").value
     let imgValor = document.getElementById("img").value
 
     if (tituloValor.length < 3) {
@@ -94,8 +69,6 @@ btnSalvar.addEventListener("click", () => {
         alert('Selecione uma categoria.');
     } else if (conteudoValor < 10) {
         alert('O Conteudo esta incompleto.');
-    } else if (autorValor.length < 2) {
-        alert('O nome do Autor esta incompleto.');
     } else if (imgValor.length < 8) {
         alert('A URL deve ter pelo menos 8 caracteres.');
     } else {
@@ -116,9 +89,10 @@ btnSalvar.addEventListener("click", () => {
             subtitulo: subtituloValor,
             categoria: categoriaValor,
             conteudo: conteudoValor,
-            autor: autorValor,
+            autor: usuario.nome,
             img: imgValor,
             data: dataCompleta,
+            idusuario: usuario.id,
             views: 0,
             comentarios: []
         }
@@ -129,7 +103,6 @@ btnSalvar.addEventListener("click", () => {
         document.getElementById("subtitulo").value = "";
         document.getElementById("categoria").value = "0";
         document.getElementById("conteudo").value = "";
-        document.getElementById("autor").value = "";
         document.getElementById("img").value = "";
         
 
@@ -190,11 +163,11 @@ function loadNews(noticias) {
         deleteIcon.title = "Excluir";
 
 
-        if(usuario === null){
-            editIcon.style.display = "none";
-            deleteIcon.style.display = "none";
+        if(usuario.id === noticia.idusuario) {
+            editIcon.style.display = "block";
+            deleteIcon.style.display = "block";
         }
-        else if(usuario.admin === false){
+        else{
             editIcon.style.display = "none";
             deleteIcon.style.display = "none";
         }
@@ -208,17 +181,13 @@ function loadNews(noticias) {
             let subtituloEdit = document.getElementById("subtituloEdit")
             let categoriaEdit = document.getElementById("categoriaEdit")
             let conteudoEdit = document.getElementById("conteudoEdit")
-            let autorEdit = document.getElementById("autorEdit")
             let imgEdit = document.getElementById("imgEdit")
 
             tituloEdit.value = noticia.titulo;
             subtituloEdit.value = noticia.subtitulo;
             categoriaEdit.value = noticia.categoria;
             conteudoEdit.value = noticia.conteudo;
-            autorEdit.value = noticia.autor;
             imgEdit.value = noticia.img;
-
-            autorEdit.addEventListener("input", () => mascaraNome(autorEdit.value));
 
             let btnCancelar = document.getElementById("cancelarEdit")
             let novoBtnCancelar = btnCancelar.cloneNode(true);
@@ -242,8 +211,6 @@ function loadNews(noticias) {
                     alert('Selecione uma categoria.');
                 } else if (conteudoEdit < 10) {
                     alert('O Conteudo esta incompleto.');
-                } else if (autorEdit.length < 2) {
-                    alert('O nome do Autor esta incompleto.');
                 } else if (imgEdit.length < 8) {
                     alert('A URL deve ter pelo menos 8 caracteres.');
                 } else {
@@ -253,7 +220,6 @@ function loadNews(noticias) {
                             i.subtitulo = subtituloEdit.value;
                             i.categoria = categoriaEdit.value;
                             i.conteudo = conteudoEdit.value;
-                            i.autor = autorEdit.value;
                             i.img = imgEdit.value;
 
                             localStorage.setItem("noticias", JSON.stringify(objNoticias));

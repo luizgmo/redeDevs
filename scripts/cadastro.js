@@ -21,9 +21,6 @@ let objUsuarios = JSON.parse(localStorage.getItem("usuarios"));
 
 let idusuario = Date.now();
 
-
-
-
 function mascaraNome(nome) {
 
     let texto = nome;
@@ -190,7 +187,6 @@ document.getElementById("form-cadastro").addEventListener("submit", (e) => {
             telefone: telefone,
             email: email,
             senha: senha,
-            admin: false,
             registro: [],
             fotoperfil: "https://voxnews.com.br/wp-content/uploads/2017/04/unnamed.png"
         }
