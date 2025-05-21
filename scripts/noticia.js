@@ -1,9 +1,7 @@
 
 let titulo = document.getElementById("titulo")
-let subtitulo = document.getElementById("subtitulo");
 let data = document.getElementById("data") ;
 let imagem = document.getElementById("imagem");
-let conteudo = document.getElementById("conteudo")
 let nomeAutor = document.getElementById("nomeAutor")
 let views = document.getElementById("views")
 
@@ -28,10 +26,8 @@ localStorage.setItem("noticias", JSON.stringify(noticias));
 
 
 titulo.textContent = noticia.titulo;
-subtitulo.textContent = noticia.subtitulo;
 data.textContent = noticia.data;
 imagem.src = noticia.img;
-conteudo.textContent = noticia.conteudo;
 nomeAutor.textContent = noticia.autor;
 
 views.textContent = noticia.views;
@@ -55,7 +51,6 @@ document.getElementById('chat-form').addEventListener('submit', function (event)
         return;
     }
 
-
     let chatInput = document.getElementById('chat-input');
 
     if (chatInput.value.trim() !== '') {
@@ -70,8 +65,6 @@ document.getElementById('chat-form').addEventListener('submit', function (event)
         localStorage.setItem("noticias", JSON.stringify(noticias));
 
         chatInput.value = '';
-
-        
 
         loadChat();
     }

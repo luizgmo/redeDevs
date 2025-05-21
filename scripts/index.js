@@ -1,11 +1,17 @@
-let btnSalvar = document.getElementById("salvar")
+let btnSalvar = document.getElementById("salvar");
 let containerCard = document.getElementById("containerCard");
 let url = document.getElementById('img');
-let addNews = document.getElementById('add-news');
-let modal = document.getElementById("modalNoticia")
-let modalFechar = document.getElementById("fechar")
-let editar = document.getElementById("modalAlertaEditar")
-let excluir = document.getElementById("modalAlertaExcluir")
+let modal = document.getElementById("modalNoticia");
+let modalFechar = document.getElementById("fechar");
+let editar = document.getElementById("modalAlertaEditar");
+let excluir = document.getElementById("modalAlertaExcluir");
+let postar = document.getElementById("add-post");
+
+let testusuario = JSON.parse(localStorage.getItem("usuario"));
+
+if(testusuario === null){
+    postar.style.display = "none";
+}
 
 let paginaAtual = 1; // Página inicial
 let itensPorPagina = 5; // Número de itens por página
@@ -16,9 +22,7 @@ if (localStorage.getItem("usuarios") === null) {
 
 let objUsuarios = JSON.parse(localStorage.getItem("usuarios"));
 
-
-
-addNews.addEventListener("click", () => {
+postar.addEventListener("click", () => {
     modal.classList.remove("d-none");
     modal.classList.add("d-block");
 })
@@ -48,27 +52,16 @@ function mascaraurl(url) {
     return temp;
 };
 
-
-
 url.addEventListener('input', () => {
     url.value = mascaraurl(url.value);
 });
 
 btnSalvar.addEventListener("click", () => {
     let tituloValor = document.getElementById("titulo").value
-    let subtituloValor = document.getElementById("subtitulo").value
-    let categoriaValor = document.getElementById("categoria").value
-    let conteudoValor = document.getElementById("conteudo").value
     let imgValor = document.getElementById("img").value
 
     if (tituloValor.length < 3) {
         alert('O Titulo deve ter pelo menos 5 caracteres.');
-    } else if (subtituloValor.length < 5) {
-        alert('O Subtitulo deve ter pelo menos 5 caracteres.');
-    } else if (categoriaValor === "0") {
-        alert('Selecione uma categoria.');
-    } else if (conteudoValor < 10) {
-        alert('O Conteudo esta incompleto.');
     } else if (imgValor.length < 8) {
         alert('A URL deve ter pelo menos 8 caracteres.');
     } else {
@@ -86,9 +79,6 @@ btnSalvar.addEventListener("click", () => {
         let objNoticia = {
             id: idUnico,
             titulo: tituloValor,
-            subtitulo: subtituloValor,
-            categoria: categoriaValor,
-            conteudo: conteudoValor,
             autor: usuario.nome,
             img: imgValor,
             data: dataCompleta,
@@ -100,12 +90,8 @@ btnSalvar.addEventListener("click", () => {
         objNoticias.push(objNoticia);
 
         document.getElementById("titulo").value = "";
-        document.getElementById("subtitulo").value = "";
-        document.getElementById("categoria").value = "0";
-        document.getElementById("conteudo").value = "";
         document.getElementById("img").value = "";
         
-
         localStorage.setItem("noticias", JSON.stringify(objNoticias));
 
         loadNews(objNoticias);
@@ -162,8 +148,11 @@ function loadNews(noticias) {
         deleteIcon.classList.add("fas", "fa-trash", "text-danger", "cursor-pointer");
         deleteIcon.title = "Excluir";
 
-
-        if(usuario.id === noticia.idusuario) {
+        if(usuario === null) {
+            editIcon.style.display = "none";
+            deleteIcon.style.display = "none";
+        }
+        else if(usuario.id === noticia.idusuario) {
             editIcon.style.display = "block";
             deleteIcon.style.display = "block";
         }
@@ -178,15 +167,9 @@ function loadNews(noticias) {
             document.body.classList.add("modal-active");
 
             let tituloEdit = document.getElementById("tituloEdit")
-            let subtituloEdit = document.getElementById("subtituloEdit")
-            let categoriaEdit = document.getElementById("categoriaEdit")
-            let conteudoEdit = document.getElementById("conteudoEdit")
             let imgEdit = document.getElementById("imgEdit")
 
             tituloEdit.value = noticia.titulo;
-            subtituloEdit.value = noticia.subtitulo;
-            categoriaEdit.value = noticia.categoria;
-            conteudoEdit.value = noticia.conteudo;
             imgEdit.value = noticia.img;
 
             let btnCancelar = document.getElementById("cancelarEdit")
@@ -205,21 +188,12 @@ function loadNews(noticias) {
             btnSalvar.addEventListener("click", () => {
                 if (tituloEdit.length < 3) {
                     alert('O Titulo deve ter pelo menos 5 caracteres.');
-                } else if (subtituloEdit.length < 5) {
-                    alert('O Subtitulo deve ter pelo menos 5 caracteres.');
-                } else if (categoriaEdit === "0") {
-                    alert('Selecione uma categoria.');
-                } else if (conteudoEdit < 10) {
-                    alert('O Conteudo esta incompleto.');
                 } else if (imgEdit.length < 8) {
                     alert('A URL deve ter pelo menos 8 caracteres.');
                 } else {
                     for(let i of objNoticias) { 
                         if(i.id === noticia.id) {
                             i.titulo = tituloEdit.value;
-                            i.subtitulo = subtituloEdit.value;
-                            i.categoria = categoriaEdit.value;
-                            i.conteudo = conteudoEdit.value;
                             i.img = imgEdit.value;
 
                             localStorage.setItem("noticias", JSON.stringify(objNoticias));
@@ -276,7 +250,6 @@ function loadNews(noticias) {
 
         img.src = noticia.img;
         h5.textContent = noticia.titulo;
-        p1.textContent = noticia.subtitulo;
         small.textContent = noticia.views + " Views - " + noticia.autor + " - " + noticia.data;
 
         h5.addEventListener("click", () => {
@@ -380,41 +353,4 @@ historico.addEventListener("click", () => {
         modalH.classList.add('d-none')
     })
 })
-
-document.getElementById("semFiltro").addEventListener("click", (e) => {
-    e.preventDefault();
-    atualizarFiltro(0);
-});
-
-document.getElementById("filtrarInovacao").addEventListener("click", (e) => {
-    e.preventDefault();
-    atualizarFiltro(1);
-});
-document.getElementById("filtrarLinguagens").addEventListener("click", (e) => {
-    e.preventDefault();
-    atualizarFiltro(2);
-});
-document.getElementById("filtrarIA").addEventListener("click", (e) => {
-    e.preventDefault();
-    atualizarFiltro(3);
-});
-document.getElementById("filtrarVagas").addEventListener("click", (e) => {
-    e.preventDefault();
-    atualizarFiltro(4);
-});
-
-function atualizarFiltro(categoria) {
-    filtroConteudo(categoria);
-}
-
-function filtroConteudo(categoria) {
-    if (!Array.isArray(objNoticias)) {
-        return;
-    }
-
-    let noticiasFiltradas = objNoticias.filter(noticia => Number(noticia.categoria) === categoria);
-    if(categoria === 0) noticiasFiltradas = objNoticias;
-    loadNews(noticiasFiltradas);
-}
-
 

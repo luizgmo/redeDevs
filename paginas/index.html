@@ -23,18 +23,6 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Categorias
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#" id="semFiltro">Todos</a></li>
-              <li><a class="dropdown-item" href="#" id="filtrarInovacao">Inovações</a></li>
-              <li><a class="dropdown-item" href="#" id="filtrarLinguagens">Linguagens</a></li>
-              <li><a class="dropdown-item" href="#" id="filtrarIA">IA</a></li>
-              <li><a class="dropdown-item" href="#" id="filtrarVagas">Vagas</a></li>
-            </ul>
-          </li>
           <li class="nav-item">
             <a class="nav-link" href="sobre.html">Sobre Portal</a>
           </li>
@@ -70,28 +58,10 @@
         <form action="#" method="post" id="form-cadastro">
           <div class="row justify-content-center">
             <div class="col-10">
-              <h5 class="mt-3">Publicar uma Notícia</h5>
+              <h5 class="mt-3">Fazer um Publicação</h5>
               <div class="mb-3">
-                <label for="titulo" class="form-label">Titulo</label>
+                <label for="titulo" class="form-label">Legenda</label>
                 <input type="text" id="titulo" name="titulo" class="form-control" required>
-              </div>
-              <div class="mb-3">
-                <label for="subtitulo" class="form-label">Subtitulo</label>
-                <input type="text" id="subtitulo" name="subtitulo" class="form-control" required>
-              </div>
-              <div class="mb-3">
-                <label for="categoria" class="form-label">Categorias</label>
-                <select class="form-select" id="categoria" aria-label="Default select example" required>
-                  <option value="0" selected>Selecione</option>
-                  <option value="1">Inovações</option>
-                  <option value="2">Linguagens</option>
-                  <option value="3">IA</option>
-                  <option value="4">Vagas</option>
-                </select>
-              </div>
-              <div class="mb-3">
-                <label for="conteudo" class="form-label">Conteudo</label>
-                <input type="text" id="conteudo" name="conteudo" class="form-control" required>
               </div>
               <div class="mb-3">
                 <label for="img" class="form-label">Imagem</label>
@@ -122,30 +92,11 @@
         <form action="#" method="post" id="form-cadastro">
           <div class="row justify-content-center">
             <div class="col-10">
-              <h5 class="mt-3">Deseja editar este notícia?</h5>
+              <h5 class="mt-3">Deseja editar esta Postagem?</h5>
               <div class="mb-3">
-                <label for="tituloEdit" class="form-label">Titulo</label>
+                <label for="tituloEdit" class="form-label">Legenda</label>
                 <input type="text" id="tituloEdit" class="form-control" required>
               </div>
-              <div class="mb-3">
-                <label for="subtituloEdit" class="form-label">Subtitulo</label>
-                <input type="text" id="subtituloEdit" class="form-control" required>
-              </div>
-              <div class="mb-3">
-                <label for="categoria" class="form-label">Categorias</label>
-                <select class="form-select" id="categoriaEdit" aria-label="Default select example" required>
-                  <option value="0" selected>Selecione</option>
-                  <option value="1">Inovações</option>
-                  <option value="2">Linguagens</option>
-                  <option value="3">IA</option>
-                  <option value="4">Vagas</option>
-                </select>
-              </div>
-              <div class="mb-3">
-                <label for="conteudoEdit" class="form-label">Conteudo</label>
-                <input type="text" id="conteudoEdit" class="form-control" required>
-              </div>
-              <div class="mb-3">
                 <label for="imgEdit" class="form-label">Imagem</label>
                 <input type="text" id="imgEdit" class="form-control" required>
               </div>
@@ -173,7 +124,7 @@
         </div>
       </div>
     </div>
-    <button type="button" id="add-news" class="btn btn-outline-light me-3 mb-1">
+    <button type="button" id="add-post" class="btn btn-outline-light me-3 mb-1">
           Fazer Publicação
     </button>
     <div id="containerCard">
