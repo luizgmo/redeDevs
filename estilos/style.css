@@ -18,13 +18,12 @@ body{
 }
 
 .cm-container {
-    margin-top: 10%;
-    width: 90%;
-    margin-left: 5%;
+    width: 50%;
 }
 
 .cm-card{
-    max-width: 1200px;
+    max-width: 90%;
+    margin-left: 5%;
     margin-bottom: 28px;
 }
 
