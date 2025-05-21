@@ -9,7 +9,7 @@ let postar = document.getElementById("add-post");
 
 let testusuario = JSON.parse(localStorage.getItem("usuario"));
 
-if(testusuario === null){
+if (testusuario === null) {
     postar.style.display = "none";
 }
 
@@ -75,7 +75,6 @@ btnSalvar.addEventListener("click", () => {
 
         let idUnico = Date.now();
 
-
         let objNoticia = {
             id: idUnico,
             titulo: tituloValor,
@@ -91,7 +90,7 @@ btnSalvar.addEventListener("click", () => {
 
         document.getElementById("titulo").value = "";
         document.getElementById("img").value = "";
-        
+
         localStorage.setItem("noticias", JSON.stringify(objNoticias));
 
         loadNews(objNoticias);
@@ -148,17 +147,36 @@ function loadNews(noticias) {
         deleteIcon.classList.add("fas", "fa-trash", "text-danger", "cursor-pointer");
         deleteIcon.title = "Excluir";
 
-        if(usuario === null) {
+
+        let likeIcon = document.createElement("i");
+        likeIcon.classList.add("fa-regular", "fa-heart");
+        likeIcon.title = "Like";
+
+        let commentsIcon = document.createElement("i");
+        commentsIcon.classList.add("fa-solid", "fa-comment");
+        commentsIcon.title = "Comment";
+
+        let shareIcon = document.createElement("i");
+        shareIcon.classList.add("fa-solid", "fa-share");
+        shareIcon.title = "Share";
+
+        if (usuario === null) {
             editIcon.style.display = "none";
             deleteIcon.style.display = "none";
         }
-        else if(usuario.id === noticia.idusuario) {
+        else if (usuario.id === noticia.idusuario) {
             editIcon.style.display = "block";
             deleteIcon.style.display = "block";
+            shareIcon.style.display = "block";
+            commentsIcon.style.display = "block";
+            likeIcon.style.display = "block";
         }
-        else{
+        else {
             editIcon.style.display = "none";
             deleteIcon.style.display = "none";
+            shareIcon.style.display = "block";
+            commentsIcon.style.display = "block";
+            likeIcon.style.display = "block";
         }
 
         editIcon.addEventListener("click", () => {
@@ -177,7 +195,7 @@ function loadNews(noticias) {
             btnCancelar.replaceWith(novoBtnCancelar);
 
             novoBtnCancelar.addEventListener("click", () => {
-                modal.classList.add("d-none"); 
+                modal.classList.add("d-none");
                 document.body.classList.remove("modal-active");
             });
 
@@ -191,15 +209,15 @@ function loadNews(noticias) {
                 } else if (imgEdit.length < 8) {
                     alert('A URL deve ter pelo menos 8 caracteres.');
                 } else {
-                    for(let i of objNoticias) { 
-                        if(i.id === noticia.id) {
+                    for (let i of objNoticias) {
+                        if (i.id === noticia.id) {
                             i.titulo = tituloEdit.value;
                             i.img = imgEdit.value;
 
                             localStorage.setItem("noticias", JSON.stringify(objNoticias));
                         }
                     }
-                    
+
                     modal.classList.toggle("d-none")
                     document.body.classList.remove("modal-active");
                     loadNews(objNoticias);
@@ -247,6 +265,9 @@ function loadNews(noticias) {
         colBody.appendChild(iconsDiv);
         iconsDiv.appendChild(editIcon);
         iconsDiv.appendChild(deleteIcon);
+        iconsDiv.appendChild(likeIcon);
+        iconsDiv.appendChild(commentsIcon);
+        iconsDiv.appendChild(shareIcon);
 
         img.src = noticia.img;
         h5.textContent = noticia.titulo;
@@ -282,7 +303,7 @@ function renderizarPaginacao(noticias) {
             loadNews(noticias);
         }
     });
-    
+
 
     let proximo = document.createElement("button");
     proximo.textContent = "Próximo";
@@ -294,9 +315,9 @@ function renderizarPaginacao(noticias) {
             loadNews(noticias);
         }
     });
-    
 
-    if(totalNoticias > 5) {
+
+    if (totalNoticias > 5) {
         paginacaoContainer.appendChild(anterior);
         paginacaoContainer.appendChild(proximo);
     }
@@ -310,7 +331,7 @@ btnPesq.addEventListener('click', (e) => {
     e.preventDefault();
 
     let input = pesquisar.value.toLowerCase();
-    
+
     if (input.trim() === "") {
         loadNews();
         return;

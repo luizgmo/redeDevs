@@ -43,7 +43,7 @@
             </ul>
           </li>
         </ul>
-        
+
         <form class="d-flex" role="search">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="pesquisa">
           <button class="btn btn-outline-light" type="submit" id="btnPesquisa">Search</button>
@@ -53,12 +53,13 @@
   </nav>
   <div class="cm-container d-flex flex-column mt-4 justify-content-center align-items-center">
 
-    <div class="modal-overlay justify-content-center align-items-center d-none d-flex " id="modalNoticia">
-      <div class="modalNoticia">
+    <div class="vh-modal-overlay justify-content-center align-items-center d-none d-flex" id="modalNoticia"
+      style="width: 100%; height: 100%;">
+      <div class="vh-modalNoticia">
         <form action="#" method="post" id="form-cadastro">
           <div class="row justify-content-center">
             <div class="col-10">
-              <h5 class="mt-3">Fazer um Publicação</h5>
+              <h5 class="mt-3">Fazer uma Publicação</h5>
               <div class="mb-3">
                 <label for="titulo" class="form-label">Legenda</label>
                 <input type="text" id="titulo" name="titulo" class="form-control" required>
@@ -76,7 +77,7 @@
         </form>
       </div>
     </div>
-    <div class="modal-overlay d-none justify-content-center align-items-center d-flex" id="modalAlertaExcluir">
+    <div class="vh-modal-overlay d-none justify-content-center align-items-center d-flex" id="modalAlertaExcluir">
       <div class="modalNoticia" style="width: 300px;">
         <div>
           <h5 class="p-2">Deseja exluir esta noticia?</h5>
@@ -87,7 +88,7 @@
         </div>
       </div>
     </div>
-    <div class="modal-overlay justify-content-center align-items-center d-flex d-none" id="modalAlertaEditar">
+    <div class="vh-modal-overlay justify-content-center align-items-center d-flex d-none" id="modalAlertaEditar">
       <div class="modalNoticia">
         <form action="#" method="post" id="form-cadastro">
           <div class="row justify-content-center">
@@ -97,42 +98,48 @@
                 <label for="tituloEdit" class="form-label">Legenda</label>
                 <input type="text" id="tituloEdit" class="form-control" required>
               </div>
-                <label for="imgEdit" class="form-label">Imagem</label>
-                <input type="text" id="imgEdit" class="form-control" required>
-              </div>
-              <div class="mb-3">
-                <button type="button" class="btn btn btn-primary" id="cancelarEdit">Fechar</button>
-                <button type="button" class="btn btn-warning" id="salvarEdit">Salvar</button>
-              </div>
+              <label for="imgEdit" class="form-label">Imagem</label>
+              <input type="text" id="imgEdit" class="form-control" required>
+            </div>
+            <div class="mb-2">
+              <br>
+              <button type="button" class="btn btn btn-primary" id="cancelarEdit">Fechar</button>
+              <button type="button" class="btn btn-warning" id="salvarEdit">Salvar</button>
             </div>
           </div>
-
-        </form>
-
       </div>
 
+      </form>
+
     </div>
-    <div class="modal-overlay d-none justify-content-center align-items-center d-flex" id="modalHistorico">
-      <div class="modalNoticia">
-        <h5 class="p-4">Seu Histórico</h5>
 
-        <div class="p-0 ms-4" id="historicoContainer">
+  </div>
+  <div class="modal-overlay d-none justify-content-center align-items-center d-flex" id="modalHistorico">
+    <div class="modalNoticia">
+      <h5 class="p-4">Seu Histórico</h5>
 
-        </div>
-        <div class="p-4">
-          <button class="btn btn-primary" id="fecharHist">Fechar</button>
-        </div>
+      <div class="p-0 ms-4" id="historicoContainer">
+
+      </div>
+      <div class="p-4">
+        <button class="btn btn-primary" id="fecharHist">Fechar</button>
       </div>
     </div>
-    <button type="button" id="add-post" class="btn btn-outline-light me-3 mb-1 justify-content-center align-items-center">
-          Fazer Publicação
+  </div>
+  <div class="d-flex vh-divAddPost">
+    <button type="button" id="add-post"
+      class="btn btn-outline-light me-3 mb-1 justify-content-center align-items-center">
+      Fazer Publicação
     </button>
-    
-    <div id="containerCard">
-    </div>
+  </div>
 
-    <div id="paginacaoContainer" class="d-flex justify-content-center mt-1">
-    </div>
+  <br>
+
+  <div id="containerCard">
+  </div>
+
+  <div id="paginacaoContainer" class="d-flex justify-content-center mt-1">
+  </div>
 
   </div>
   <script src="../scripts/navbar.js"></script>

@@ -1,8 +1,8 @@
-body{
-    -webkit-user-select: none; /* Safari, Chrome */
-    -moz-user-select: none;    /* Firefox */
-    -ms-user-select: none;     /* Internet Explorer */
-    user-select: none;         /* Padrão */
+body {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .cm-body {
@@ -21,22 +21,22 @@ body{
     width: 50%;
 }
 
-.cm-card{
+.cm-card {
     max-width: 90%;
     margin-left: 5%;
     margin-bottom: 28px;
 }
 
-p{
+p {
     font-size: 18px;
 }
 
-.titulo-h5{
+.titulo-h5 {
     font-size: 30px;
     font-weight: normal;
 }
 
-#add-news{
+#add-news {
     display: block;
 }
 
@@ -49,7 +49,7 @@ p{
 }
 
 .form-control::placeholder {
-    color: #6c757d; 
+    color: #6c757d;
 }
 
 
@@ -61,19 +61,19 @@ p{
     color: #6c757d;
 }
 
-.btnt7{
+.btnt7 {
     margin-bottom: 0;
     margin-top: auto;
 }
 
-.t7Tamanho{
+.t7Tamanho {
     font-size: 14px;
 }
 
 .modal-overlay {
-    position: fixed; /* Fixa no viewport */
-    background-color: rgba(0, 0, 0, 0.5); /* Fundo semitransparente */
-    z-index: 999; /* Camada acima de outros elementos */
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
     top: 0px;
     pointer-events: all;
     margin: 0px;
@@ -97,13 +97,39 @@ p{
 
 #historicoContainer {
     flex-grow: 1;
-    overflow-y: auto; /* Adiciona scroll apenas no conteúdo */
-    max-height: 50vh; /* Limita a altura do conteúdo */
+    overflow-y: auto;
+    max-height: 50vh;
     padding: 8px;
 }
 
 .vh-img {
-    width: 200px; 
-    height: 200px; 
+    width: 200px;
+    height: 200px;
     object-fit: cover;
+}
+
+.vh-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1050;
+}
+
+.vh-modalNoticia {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+}
+
+.vh-divAddPost {
+    position: relative;
+    left: 5%;
 }
