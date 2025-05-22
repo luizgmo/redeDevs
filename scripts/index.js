@@ -149,16 +149,19 @@ function loadNews(noticias) {
 
 
         let likeIcon = document.createElement("i");
-        likeIcon.classList.add("fa-regular", "fa-heart");
+        likeIcon.classList.add("fas", "fa-heart");
+        likeIcon.style.color = "red";
         likeIcon.title = "Like";
 
         let commentsIcon = document.createElement("i");
-        commentsIcon.classList.add("fa-solid", "fa-comment");
+        commentsIcon.classList.add("fas", "fa-comment");
         commentsIcon.title = "Comment";
+        commentsIcon.style.color = "#57B9FF";
 
         let shareIcon = document.createElement("i");
-        shareIcon.classList.add("fa-solid", "fa-share");
+        shareIcon.classList.add("fas", "fa-share");
         shareIcon.title = "Share";
+        shareIcon.style.color = "green";
 
         if (usuario === null) {
             editIcon.style.display = "none";
@@ -167,16 +170,10 @@ function loadNews(noticias) {
         else if (usuario.id === noticia.idusuario) {
             editIcon.style.display = "block";
             deleteIcon.style.display = "block";
-            shareIcon.style.display = "block";
-            commentsIcon.style.display = "block";
-            likeIcon.style.display = "block";
         }
         else {
             editIcon.style.display = "none";
             deleteIcon.style.display = "none";
-            shareIcon.style.display = "block";
-            commentsIcon.style.display = "block";
-            likeIcon.style.display = "block";
         }
 
         editIcon.addEventListener("click", () => {
@@ -263,11 +260,12 @@ function loadNews(noticias) {
         p2.appendChild(small);
 
         colBody.appendChild(iconsDiv);
-        iconsDiv.appendChild(editIcon);
-        iconsDiv.appendChild(deleteIcon);
+        
         iconsDiv.appendChild(likeIcon);
         iconsDiv.appendChild(commentsIcon);
         iconsDiv.appendChild(shareIcon);
+        iconsDiv.appendChild(editIcon);
+        iconsDiv.appendChild(deleteIcon);
 
         img.src = noticia.img;
         h5.textContent = noticia.titulo;
