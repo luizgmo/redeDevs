@@ -2,113 +2,237 @@
 <html lang="pt-br">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Noticia</title>
-  <link rel="stylesheet" href="../estilos/style.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Noticia</title>
+<link rel="stylesheet" href="../estilos/style.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 </head>
 
 <body class="vh-fundo">
-  <nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark border-bottom border-body" data-bs-theme="dark">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="index.html">RedeDevs</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link" href="sobre.html">Sobre Portal</a>
-          </li>
-          <li class="nav-item"  id="login">
-            <a class="nav-link" href="login.html">Login</a>
-          </li>
-          <li class="nav-item dropdown" id="perfil">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Perfil
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="perfil.html">Editar</a></li>
-              <li><a class="dropdown-item" href="#">Histórico</a></li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li><a class="dropdown-item" id="logout" href="#">Sair</a></li>
-            </ul>
-          </li>
-        </ul>
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="pesquisa">
-          <button class="btn btn-outline-light" type="submit" id = "btnPesquisa">Search</button>
-        </form>
-      </div>
-    </div>
-  </nav>
-  <div class="container mt-5">
-    <div class="row">
-      <div class="col-md-8 offset-md-2">
-        <div class="news-header text-center">
-          <h1 id="titulo" class="news-title mb-3 fw-bold display-4">Legenda da Postagem</h1>
-          <small id="data" class="news-date text-muted fst-italic">Data da Publicação</small>
-        </div>
-      </div>
-    </div>
-    <div class="row mt-4">
-      <div class="col-md-8">
-        <div class="position-relative">
-          <img id="imagem"
-            src="https://www.esportelandia.com.br/wp-content/uploads/2019/10/1.-onde-jogar-counter-strike.png"
-            alt="Imagem da notícia" class="img-fluid rounded shadow-lg mb-4">
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="row">
-          <div class="news-author-info bg-dark p-4 rounded shadow-lg">
-            <h5 class="author-title mb-3 fw-bold text-light" id="sobreAutor">Sobre o Autor</h5>
-            <p id="nomeAutor" class="author-name mb-4 text-secondary">Nome do autor</p>
-            <h5 class="views-title mb-3 fw-bold text-light">Visualizações</h5>
-            <p id="views" class="views-count fs-4 text-secondary">0</p>
-          </div>
-        </div>
-        <div class="row mt-3">
-          <div class="chat-section bg-dark text-light p-4 rounded shadow-sm">
-            <h5 class="chat-title mb-3">Comentários</h5>
-            <div id="chat-messages"
-              style="overflow-y: auto; overflow-x: hidden; word-wrap: break-word; max-width: 100%; height: 200px;">
-            </div>
-            <form id="chat-form" class="d-flex">
-              <input id="chat-input" type="text" class="form-control me-2" placeholder="Escreva seu comentário">
-              <button id="chat-submit" class="btn btn-light">Enviar</button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="modal-overlay d-none d-flex align-items-center justify-content-center" id="modal">
-    <div class="modalNoticia">
-      <form action="#" method="post" id="form-cadastro">
-        <div class="row justify-content-center">
-          <div class="col-10">
-            <h5 class="mt-3" id="exampleModalLabel">Comentário bloqueado</h5>
-            <p style="font-size: 16px;">Para realizar um comentario e necessario logar em uma conta!</p>
-            <div class="mb-3">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="fechar">Fechar</button>
-              <button type="button" class="btn ms-3 btn-primary" data-bs-dismiss="modal" id="logar">Logar</button>
-            </div>
-          </div>
-        </div>
+<nav class="navbar navbar-expand-lg bg-body-tertiary border-bottom border-body">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="index.html">RedeDevs</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="sobre.html">Sobre Portal</a>
+        </li>
+        <li class="nav-item" id="login">
+          <a class="nav-link" href="login.html">Login</a>
+        </li>
+        <li class="nav-item dropdown" id="perfil">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Perfil
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="perfil.html">Editar</a></li>
+            <li><a class="dropdown-item" href="#" id="historico">Histórico</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" id="logout" href="#">Sair</a></li>
+          </ul>
+        </li>
+      </ul>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Search" id="pesquisa">
+        <button class="btn btn-outline-primary" type="submit" id="btnPesquisa">
+          <i class="fas fa-search"></i>
+        </button>
       </form>
     </div>
   </div>
-  <script src="../scripts/navbar.js"></script>
-  <script src="../scripts/noticia.js"></script>
+</nav>
 
-</body>
+<div class="container mt-4">
+  <!-- Botão de voltar -->
+  <div class="mb-3">
+    <a href="index.html" class="btn btn-outline-primary btn-sm">
+      <i class="fas fa-arrow-left me-2"></i>Voltar para o feed
+    </a>
+  </div>
+
+  <!-- Container principal estilo LinkedIn -->
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <!-- Post principal estilo LinkedIn -->
+      <div class="linkedin-post-detail">
+        <!-- Header do post -->
+        <div class="post-header">
+          <img id="author-avatar" src="https://ui-avatars.com/api/?name=User&background=5E17EB&color=fff" alt="Avatar" class="user-avatar">
+          <div class="user-info">
+            <h6 id="nomeAutor" class="user-name">Nome do autor</h6>
+            <p class="user-title">Desenvolvedor | JavaScript | React</p>
+            <span class="post-time">
+              <span id="data">Data da Publicação</span> • <i class="fas fa-globe-americas"></i>
+            </span>
+          </div>
+          <div class="more-options" id="author-actions">
+            <!-- Botões de editar e excluir serão inseridos aqui pelo JavaScript se o usuário for o autor -->
+          </div>
+        </div>
+
+        <!-- Conteúdo do post -->
+        <div class="post-content">
+          <p id="noticia-texto" class="post-text">
+            <!-- O texto da notícia será inserido aqui pelo JavaScript -->
+          </p>
+          
+          <!-- Imagem do post -->
+          <div id="image-container" class="post-image-container">
+            <img id="imagem" src="/placeholder.svg" alt="Imagem da notícia" class="post-image">
+            <div class="image-overlay">
+              <button id="fullscreen-btn" class="btn btn-light btn-sm">
+                <i class="fas fa-expand"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Estatísticas do post -->
+        <div class="post-stats">
+          <span class="stats-item">
+            <i class="fas fa-heart"></i> <span id="like-count">0</span>
+          </span>
+          <span class="stats-item">
+            <span id="comment-count">0</span> comentários
+          </span>
+          <span class="stats-item">
+            <i class="far fa-eye"></i> <span id="views">0</span> visualizações
+          </span>
+        </div>
+
+        <!-- Ações do post -->
+        <div class="post-actions">
+          <button id="like-btn" class="action-btn">
+            <i class="far fa-heart"></i> Curtir
+          </button>
+          <button class="action-btn" onclick="document.getElementById('chat-input').focus()">
+            <i class="far fa-comment"></i> Comentar
+          </button>
+          <button id="share-btn" class="action-btn">
+            <i class="far fa-share-square"></i> Compartilhar
+          </button>
+          <button class="action-btn">
+            <i class="far fa-paper-plane"></i> Enviar
+          </button>
+        </div>
+      </div>
+
+      <!-- Seção de comentários estilo LinkedIn -->
+      <div class="comments-section">
+        <div class="comments-header">
+          <h6><i class="far fa-comments me-2"></i>Comentários (<span id="comments-count">0</span>)</h6>
+        </div>
+        
+        <!-- Formulário de comentário -->
+        <div class="comment-form-container">
+          <form id="chat-form" class="comment-form-linkedin">
+            <img id="user-avatar" src="https://ui-avatars.com/api/?name=User&background=5E17EB&color=fff" alt="Avatar" class="comment-user-avatar">
+            <div class="comment-input-container">
+              <input id="chat-input" type="text" class="comment-input" placeholder="Escreva um comentário...">
+              <button id="chat-submit" class="comment-submit" type="submit">
+                <i class="fas fa-paper-plane"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+        
+        <!-- Lista de comentários -->
+        <div id="chat-messages" class="comments-list"></div>
+      </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="col-lg-4">
+      <!-- Sobre o autor -->
+      <div class="sidebar-card">
+        <div class="sidebar-card-header">
+          <h6><i class="fas fa-user me-2"></i>Sobre o Autor</h6>
+        </div>
+        <div class="sidebar-card-body">
+          <div class="author-info">
+            <img id="sidebar-avatar" src="https://ui-avatars.com/api/?name=User&background=5E17EB&color=fff" alt="Avatar" class="author-avatar-lg">
+            <div class="author-details">
+              <h6 id="sidebar-author" class="author-name-sidebar">Nome do autor</h6>
+              <p class="author-title-sidebar">Desenvolvedor | JavaScript | React</p>
+              <p class="author-join-date">Membro desde 2023</p>
+            </div>
+          </div>
+          <p class="author-bio">Autor de conteúdo na plataforma RedeDevs, compartilhando conhecimento sobre desenvolvimento web e tecnologia.</p>
+        </div>
+      </div>
+
+      <!-- Posts relacionados -->
+      <div class="sidebar-card">
+        <div class="sidebar-card-header">
+          <h6><i class="fas fa-newspaper me-2"></i>Posts Relacionados</h6>
+        </div>
+        <div class="sidebar-card-body p-0">
+          <div id="related-posts" class="related-posts-list">
+            <!-- Posts relacionados serão inseridos aqui pelo JavaScript -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Tags -->
+      <div class="sidebar-card">
+        <div class="sidebar-card-header">
+          <h6><i class="fas fa-tags me-2"></i>Tags</h6>
+        </div>
+        <div class="sidebar-card-body">
+          <div class="tags-container">
+            <a href="#" class="tag-item">desenvolvimento</a>
+            <a href="#" class="tag-item">javascript</a>
+            <a href="#" class="tag-item">programação</a>
+            <a href="#" class="tag-item">tecnologia</a>
+            <a href="#" class="tag-item">react</a>
+            <a href="#" class="tag-item">frontend</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal de login -->
+<div class="modal-overlay d-none d-flex align-items-center justify-content-center" id="modal">
+  <div class="modalNoticia">
+    <div class="modal-header-custom">
+      <h5><i class="fas fa-lock me-2"></i>Comentário bloqueado</h5>
+    </div>
+    <div class="modal-body-custom">
+      <p>Para realizar um comentário é necessário estar logado em uma conta!</p>
+    </div>
+    <div class="modal-footer-custom">
+      <button type="button" class="btn btn-secondary" id="fechar">Fechar</button>
+      <button type="button" class="btn btn-primary" id="logar">Fazer login</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal de imagem em tela cheia -->
+<div class="modal-overlay d-none d-flex align-items-center justify-content-center" id="image-modal">
+  <div class="image-modal-container">
+    <button id="close-fullscreen" class="btn btn-light btn-sm position-absolute top-0 end-0 m-3">
+      <i class="fas fa-times"></i>
+    </button>
+    <img id="fullscreen-image" src="/placeholder.svg" alt="Imagem em tela cheia" class="fullscreen-image">
+  </div>
+</div>
+
+<script src="../scripts/navbar.js"></script>
+<script src="../scripts/noticia.js"></script>
 <script src="https://kit.fontawesome.com/8977fa014d.js" crossorigin="anonymous"></script>
+</body>
+
 </html>

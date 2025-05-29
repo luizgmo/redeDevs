@@ -55,6 +55,7 @@
   </nav>
   <div class="cm-container d-flex flex-column mt-4 justify-content-center align-items-center">
 
+    <!-- MODAL CRIAR NOTÍCIA - ALTERADO -->
     <div class="vh-modal-overlay justify-content-center align-items-center d-none d-flex" id="modalNoticia"
       style="width: 100%; height: 100%;">
       <div class="vh-modalNoticia">
@@ -64,11 +65,13 @@
               <h5 class="mt-3">Fazer uma Publicação</h5>
               <div class="mb-3">
                 <label for="titulo" class="form-label">Legenda</label>
-                <input type="text" id="titulo" name="titulo" class="form-control" required>
+                <input type="text" id="titulo" name="titulo" class="form-control" maxlength="3000" required>
+                <small class="form-text text-muted">Máximo 3000 caracteres</small>
               </div>
               <div class="mb-3">
                 <label for="img" class="form-label">Imagem</label>
-                <input type="text" id="img" name="img" class="form-control" required>
+                <input type="file" id="img" name="img" class="form-control" accept=".jpg,.jpeg,.gif,.bmp,.pdf" required>
+                <small class="form-text text-muted">Formatos aceitos: JPG, JPEG, GIF, BMP, PDF</small>
               </div>
               <div class="mb-3">
                 <button type="button" class="btn btn-secondary" id="fechar">Fechar</button>
@@ -79,6 +82,7 @@
         </form>
       </div>
     </div>
+
     <div class="vh-modal-overlay d-none justify-content-center align-items-center d-flex" id="modalAlertaExcluir">
       <div class="modalNoticia" style="width: 300px;">
         <div>
@@ -90,6 +94,8 @@
         </div>
       </div>
     </div>
+
+    <!-- MODAL EDITAR NOTÍCIA - ALTERADO -->
     <div class="vh-modal-overlay justify-content-center align-items-center d-flex d-none" id="modalAlertaEditar">
       <div class="modalNoticia">
         <form action="#" method="post" id="form-cadastro">
@@ -98,51 +104,49 @@
               <h5 class="mt-3">Deseja editar esta Postagem?</h5>
               <div class="mb-3">
                 <label for="tituloEdit" class="form-label">Legenda</label>
-                <input type="text" id="tituloEdit" class="form-control" required>
+                <input type="text" id="tituloEdit" class="form-control" maxlength="3000" required>
+                <small class="form-text text-muted">Máximo 3000 caracteres</small>
               </div>
-              <label for="imgEdit" class="form-label">Imagem</label>
-              <input type="text" id="imgEdit" class="form-control" required>
               <div class="mb-3">
-              <br>
-              <button type="button" class="btn btn btn-primary" id="cancelarEdit">Fechar</button>
-              <button type="button" class="btn btn-warning" id="salvarEdit">Salvar</button>
+                <label for="imgEdit" class="form-label">Nova Imagem (opcional)</label>
+                <input type="file" id="imgEdit" class="form-control" accept=".jpg,.jpeg,.gif,.bmp,.pdf">
+                <small class="form-text text-muted">Formatos aceitos: JPG, JPEG, GIF, BMP, PDF</small>
+              </div>
+              <div class="mb-3">
+                <button type="button" class="btn btn btn-primary" id="cancelarEdit">Fechar</button>
+                <button type="button" class="btn btn-warning" id="salvarEdit">Salvar</button>
+              </div>
             </div>
-            </div>
-            
           </div>
-      </div>
-
-      </form>
-
-    </div>
-
-  </div>
-  <div class="modal-overlay d-none justify-content-center align-items-center d-flex" id="modalHistorico">
-    <div class="modalNoticia">
-      <h5 class="p-4">Seu Histórico</h5>
-
-      <div class="p-0 ms-4" id="historicoContainer">
-
-      </div>
-      <div class="p-4">
-        <button class="btn btn-primary" id="fecharHist">Fechar</button>
+        </form>
       </div>
     </div>
-  </div>
-  <div class="d-flex vh-divAddPost">
-    <button type="button" id="add-post"
-      class="btn btn-outline-light me-3 mb-1 justify-content-center align-items-center">
-      Fazer Publicação
-    </button>
-  </div>
 
-  <br>
+    <div class="modal-overlay d-none justify-content-center align-items-center d-flex" id="modalHistorico">
+      <div class="modalNoticia">
+        <h5 class="p-4">Seu Histórico</h5>
+        <div class="p-0 ms-4" id="historicoContainer">
+        </div>
+        <div class="p-4">
+          <button class="btn btn-primary" id="fecharHist">Fechar</button>
+        </div>
+      </div>
+    </div>
 
-  <div id="containerCard">
-  </div>
+    <div class="d-flex vh-divAddPost">
+      <button type="button" id="add-post"
+        class="btn btn-outline-light me-3 mb-1 justify-content-center align-items-center">
+        Fazer Publicação
+      </button>
+    </div>
 
-  <div id="paginacaoContainer" class="d-flex justify-content-center mt-1">
-  </div>
+    <br>
+
+    <div id="containerCard">
+    </div>
+
+    <div id="paginacaoContainer" class="d-flex justify-content-center mt-1">
+    </div>
 
   </div>
   <script src="../scripts/navbar.js"></script>
