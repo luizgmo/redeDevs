@@ -1,103 +1,162 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sobre</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre - RedeDevs</title>
+    <link rel="stylesheet" href="../estilos/style2.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-left">
+                <a href="#" class="nav-brand">RedeDevs</a>
+                <div class="nav-links">
+                    <a href="#" class="nav-link">Sobre Portal</a>
+                    <a href="#" class="nav-link">Login</a>
+                </div>
+            </div>
+            <div class="nav-right">
+                <div class="search-container">
+                    <input type="search" placeholder="Pesquisar..." class="search-input" id="searchInput">
+                    <button class="search-btn" id="searchBtn">Buscar</button>
+                </div>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
 
-<body style="background-color: darkgrey;">
-  <nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark border-bottom border-body" data-bs-theme="dark">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="index.html">RedeDevs</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link" href="sobre.html">Sobre Portal</a>
-          </li>
-          <li class="nav-item"  id="login">
-            <a class="nav-link" href="login.html">Login</a>
-          </li>
-          <li class="nav-item dropdown" id="perfil">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Perfil
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="perfil.html">Editar</a></li>
-              <li><a class="dropdown-item" href="#">Histórico</a></li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li><a class="dropdown-item" id="logout" href="#">Sair</a></li>
-            </ul>
-          </li>
-        </ul>
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="pesquisa">
-          <button class="btn btn-outline-light" type="submit" id = "btnPesquisa">Search</button>
-        </form>
-      </div>
-    </div>
-  </nav>
-  <div class="container mt-4 ">
-    <div class="row p-2">
-      <div class="col-12 text-center mb-4">
-        <h1><strong>Sobre o Portal RedeDevs</strong></h1>
-        <p class="text-muted">Seu portal de jornalismo para o mundo da tecnologia.</p>
-      </div>
-    </div>
-    <div class="row justify-content-center">
-      <div class="col-lg-5 col-md-6 col-10 bg-dark rounded shadow-lg p-4 mb-4 me-3">
-        <h2 class="text-light">O que é o RedeDevs?</h2>
-        <p class="text-light">
-          O RedeDevs é um portal de jornalismo focado em trazer as últimas notícias, análises e tendências
-          do mundo da tecnologia. Com uma equipe de especialistas, buscamos informar, inspirar e educar
-          desenvolvedores e entusiastas em tecnologia.
-        </p>
-      </div>
-      <div class="col-lg-5 col-md-6 col-10 bg-dark rounded shadow-lg p-4 mb-4 me-3">
-        <h2 class="text-light">Quem são os criadores?</h2>
-        <p class="text-light">
-          Criado por um time apaixonado por tecnologia e inovação, o RedeDevs foi fundado por:
-        </p>
-        <ul>
-          <li class="text-light"><strong>Cauan Mendes:</strong> Aluno da faculdade IFSP.</li>
-          <li class="text-light"><strong>Luiz Gustavo Monico:</strong> Aluno da faculdade IFSP.</li>
-          <li class="text-light"><strong>Tiago Setti:</strong> Aluno da faculdade IFSP.</li>
-          <li class="text-light"><strong>Victor Herculini:</strong> Aluno da faculdade IFSP.</li>
-        </ul>
-      </div>
-    </div>
-    <div class="row justify-content-center">
-      <div class="col-lg-5 col-md-6 col-10 text-center bg-dark rounded shadow-lg p-4 mb-4 me-3">
-        <h2 class="text-light">Missão e Valores</h2>
-        <p class="text-secondary">
-          Nossa missão é democratizar o acesso à informação tecnológica, promovendo conhecimento
-          acessível e confiável para todos. Queremos alertar você de toda novidade que ocorre no mundo da tecnologia,
-          para você não se preocupar com essa área que muda constantemente.
-        </p>
-      </div>
-      <div class="col-lg-5 col-md-6 col-10 bg-dark rounded shadow-lg p-4 mb-4 me-3">
-        <h2 class="text-light">Quais tecnologias foram usadas neste site?</h2>
-        <ul>
-          <li class="text-light"><strong>HTML</strong> <i class="fa-brands fa-html5" style="color: #ff8040;"></i></li>
-          <li class="text-light"><strong>JavaScript</strong> <i class="fa-brands fa-js" style="color: #FFD43B;"></i></li>
-          <li class="text-light"><strong>CSS</strong> <i class="fa-brands fa-css3-alt" style="color: #74C0FC;"></i></li>
-          <li class="text-light"><strong>Bootstrap</strong> <i class="fa-brands fa-bootstrap" style="color: #0000a0;"></i></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  
-  <script src="../scripts/navbar.js"></script>
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">
+                Sobre o Portal <span class="gradient-text">RedeDevs</span>
+            </h1>
+            <p class="hero-subtitle">Seu portal de jornalismo para o mundo da tecnologia</p>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="cards-grid">
+                <div class="card fade-in" data-delay="0">
+                    <div class="card-header">
+                        <div class="card-icon blue">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h2>O que é o RedeDevs?</h2>
+                    </div>
+                    <p>
+                        O RedeDevs é um portal de jornalismo focado em trazer as últimas notícias, análises e tendências do
+                        mundo da tecnologia. Com uma equipe de especialistas, buscamos informar, inspirar e educar
+                        desenvolvedores e entusiastas em tecnologia.
+                    </p>
+                </div>
+
+                <div class="card fade-in" data-delay="200">
+                    <div class="card-header">
+                        <div class="card-icon purple">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <h2>Missão e Valores</h2>
+                    </div>
+                    <p>
+                        Nossa missão é democratizar o acesso à informação tecnológica, promovendo conhecimento acessível e
+                        confiável para todos. Queremos alertar você de toda novidade que ocorre no mundo da tecnologia, para
+                        você não se preocupar com essa área que muda constantemente.
+                    </p>
+                </div>
+            </div>
+
+            <div class="card large-card fade-in" data-delay="400">
+                <div class="card-header">
+                    <div class="card-icon green">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h2>Quem são os criadores?</h2>
+                </div>
+                <p class="creators-intro">
+                    Criado por um time apaixonado por tecnologia e inovação, o RedeDevs foi fundado por:
+                </p>
+                <div class="creators-grid">
+                    <div class="creator-card" data-name="Cauan Mendes">
+                        <div class="creator-avatar">
+                            <a href="https://github.com/CauanMendes" target="_blank">
+                                <img src="https://avatars.githubusercontent.com/u/90005539?v=4" alt="Cauan Mendes">
+                            </a>
+                        </div>
+                        <h3>Cauan Mendes</h3>
+                        <p>Aluno da faculdade IFSP</p>
+                    </div>
+                    <div class="creator-card" data-name="Luiz Gustavo Monico">
+                        <div class="creator-avatar">
+                            <a href="https://github.com/luizgmo" target="_blank">
+                                <img src="https://avatars.githubusercontent.com/u/70338865?v=4" alt="Luiz Gustavo Monico">
+                            </a>
+                        </div>
+                        <h3>Luiz Gustavo Monico</h3>
+                        <p>Aluno da faculdade IFSP</p>
+                    </div>
+                    <div class="creator-card" data-name="Tiago Setti">
+                        <div class="creator-avatar">
+                            <a href="https://github.com/Tiago7mendes" target="_blank">
+                                <img src="https://avatars.githubusercontent.com/u/161851228?v=4" alt="Tiago Setti">
+                            </a>
+                        </div>
+                        <h3>Tiago Setti</h3>
+                        <p>Aluno da faculdade IFSP</p>
+                    </div>
+                    <div class="creator-card" data-name="Victor Herculini">
+                        <div class="creator-avatar">
+                            <a href="https://github.com/vitaoh" target="_blank">
+                                <img src="https://avatars.githubusercontent.com/u/161851120?v=4" alt="Victor Herculini">
+                            </a>
+                        </div>
+                        <h3>Victor Herculini</h3>
+                        <p>Aluno da faculdade IFSP</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card large-card fade-in" data-delay="600">
+                <div class="card-header">
+                    <div class="card-icon orange">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h2>Quais tecnologias foram usadas neste site?</h2>
+                </div>
+                <div class="tech-grid">
+                    <div class="tech-card" data-tech="HTML">
+                        <div class="tech-icon">🌐</div>
+                        <h3>HTML</h3>
+                    </div>
+                    <div class="tech-card" data-tech="JavaScript">
+                        <div class="tech-icon">⚡</div>
+                        <h3>JavaScript</h3>
+                    </div>
+                    <div class="tech-card" data-tech="CSS">
+                        <div class="tech-icon">🎨</div>
+                        <h3>CSS</h3>
+                    </div>
+                    <div class="tech-card" data-tech="Bootstrap">
+                        <div class="tech-icon">🅱️</div>
+                        <h3>Bootstrap</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2024 RedeDevs</p>
+        </div>
+    </footer>
+
+    <script src="../scripts/sobre.js"></script>
 </body>
-<script src="https://kit.fontawesome.com/8977fa014d.js" crossorigin="anonymous"></script>
 </html>
