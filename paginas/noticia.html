@@ -14,44 +14,43 @@
 </head>
 
 <body class="vh-fundo">
-<nav class="navbar navbar-expand-lg bg-body-tertiary border-bottom border-body">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="index.html">RedeDevs</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link" href="sobre.html">Sobre Portal</a>
-        </li>
-        <li class="nav-item" id="login">
-          <a class="nav-link" href="login.html">Login</a>
-        </li>
-        <li class="nav-item dropdown" id="perfil">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Perfil
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="perfil.html">Editar</a></li>
-            <li><a class="dropdown-item" href="# id="historico">Histórico</a></li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li><a class="dropdown-item" id="logout" href="#">Sair</a></li>
-          </ul>
-        </li>
-      </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Search" id="pesquisa">
-        <button class="btn btn-outline-primary" type="submit" id="btnPesquisa">
-          <i class="fas fa-search"></i>
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="index.html" class="nav-brand">RedeDevs</a>
+        <div class="nav-links" id="navLinks">
+          <a href="sobre.html" class="nav-link">Sobre Portal</a>
+          <a href="login.html" class="nav-link" id="login">Login</a>
+          <div class="nav-dropdown" id="perfil">
+            <a href="#" class="nav-link dropdown-toggle" id="perfilToggle">
+              <i class="fas fa-user"></i> Perfil
+            </a>
+            <div class="dropdown-menu" id="dropdownMenu">
+              <a href="perfil.html" class="dropdown-item">
+                <i class="fas fa-edit"></i> Editar Perfil
+              </a>
+              <a href="#" class="dropdown-item" id="historico">
+                <i class="fas fa-history"></i> Histórico
+              </a>
+              <div class="dropdown-divider"></div>
+              <a href="#" class="dropdown-item" id="logout">
+                <i class="fas fa-sign-out-alt"></i> Sair
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="nav-right">
+        <div class="search-container">
+          <input type="search" placeholder="Pesquisar..." class="search-input" id="pesquisa">
+          <button class="search-btn" id="btnPesquisa">Buscar</button>
+        </div>
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+          <i class="fas fa-bars"></i>                                                                                         
         </button>
-      </form>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>                                                                                                                                                    
 
 <div class="container mt-4">
   <!-- Botão de voltar -->
