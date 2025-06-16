@@ -4,7 +4,6 @@ const data = document.getElementById("data")
 const imagem = document.getElementById("imagem")
 const imageContainer = document.getElementById("image-container")
 const nomeAutor = document.getElementById("nomeAutor")
-const sidebarAuthor = document.getElementById("sidebar-author")
 const views = document.getElementById("views")
 const chatInput = document.getElementById("chat-input")
 const chatForm = document.getElementById("chat-form")
@@ -15,22 +14,19 @@ const likeBtn = document.getElementById("like-btn")
 const likeCount = document.getElementById("like-count")
 const shareBtn = document.getElementById("share-btn")
 const authorActions = document.getElementById("author-actions")
-const relatedPosts = document.getElementById("related-posts")
 const fullscreenBtn = document.getElementById("fullscreen-btn")
 const imageModal = document.getElementById("image-modal")
 const fullscreenImage = document.getElementById("fullscreen-image")
 const closeFullscreen = document.getElementById("close-fullscreen")
 const authorAvatar = document.getElementById("author-avatar")
-const sidebarAvatar = document.getElementById("sidebar-avatar")
 const userAvatar = document.getElementById("user-avatar")
-const noticiaTexto = document.getElementById("noticia-texto")
 
 // Verificar se todos os elementos necessários existem
 const elements = [
-  titulo, data, imagem, imageContainer, nomeAutor, sidebarAuthor, views,
+  titulo, data, imagem, imageContainer, nomeAutor, views,
   chatInput, chatForm, chatMessages, commentsCount, commentCount, likeBtn,
-  likeCount, shareBtn, authorActions, relatedPosts, authorAvatar,
-  sidebarAvatar, userAvatar, noticiaTexto
+  likeCount, shareBtn, authorActions, authorAvatar,
+  userAvatar
 ]
 
 if (elements.some((element) => !element)) {
@@ -42,8 +38,8 @@ if (localStorage.getItem("usuarios") === null) {
   localStorage.setItem("usuarios", JSON.stringify([]))
 }
 
-const objUsuarios = JSON.parse(localStorage.getItem("usuarios")) || []
-const noticias = JSON.parse(localStorage.getItem("noticias")) || []
+const objUsuarios = JSON.parse(localStorage.getItem("usuarios"))
+const noticias = JSON.parse(localStorage.getItem("noticias"))
 
 // Obter ID da notícia da URL
 const urlParams = new URLSearchParams(window.location.search)
@@ -58,9 +54,9 @@ if (!noticia) {
 }
 
 // Inicializar contadores
-noticia.views = noticia.views || 0
-noticia.likes = noticia.likes || 0
-noticia.comentarios = noticia.comentarios || []
+noticia.views = noticia.views
+noticia.likes = noticia.likes
+noticia.comentarios = noticia.comentarios
 
 // Incrementar visualizações
 noticia.views += 1
@@ -98,16 +94,15 @@ titulo.textContent = noticia.titulo
 data.textContent = formatTimeAgo(noticia.data)
 views.textContent = noticia.views
 nomeAutor.textContent = noticia.autor
-sidebarAuthor.textContent = noticia.autor
 likeCount.textContent = noticia.likes
 commentCount.textContent = noticia.comentarios.length
 commentsCount.textContent = noticia.comentarios.length
-noticiaTexto.textContent = noticia.conteudo || noticia.titulo
+
+console.log("Notícia carregada:", noticia);
 
 // Gerar avatares
 const authorAvatarUrl = generateAvatar(noticia.autor)
 authorAvatar.src = authorAvatarUrl
-sidebarAvatar.src = authorAvatarUrl
 
 // Verificar se há imagem
 if (noticia.img && noticia.img.trim() !== "") {
@@ -120,12 +115,12 @@ if (noticia.img && noticia.img.trim() !== "") {
 }
 
 // Verificar se o usuário atual é o autor
-const usuario = JSON.parse(localStorage.getItem("usuario"))
-if (usuario) {
-  userAvatar.src = generateSmallAvatar(usuario.nome)
+const usuarioAtivo = JSON.parse(localStorage.getItem("usuario"))
+if (usuarioAtivo) {
+  userAvatar.src = generateSmallAvatar(usuarioAtivo.nome)
   chatInput.placeholder = `Escreva um comentário...`
 
-  if (usuario.id === noticia.idusuario) {
+  if (usuarioAtivo.id === noticia.idusuario) {
     const editBtn = document.createElement("i")
     editBtn.className = "fas fa-edit edit-icon"
     editBtn.title = "Editar postagem"
@@ -146,9 +141,9 @@ if (usuario) {
 }
 
 // Registrar visualização no histórico do usuário
-if (usuario) {
+if (usuarioAtivo) {
   for (const i of objUsuarios) {
-    if (i.id === usuario.id) {
+    if (i.id === usuarioAtivo.id) {
       if (!i.registro || !Array.isArray(i.registro)) {
         i.registro = []
       }
@@ -163,7 +158,6 @@ if (usuario) {
 
 // Carregar posts relacionados
 function loadRelatedPosts() {
-  relatedPosts.innerHTML = "" // Limpar conteúdo anterior
 
   // Filtrar posts do mesmo autor, excluindo a atual
   const authorPosts = noticias.filter((post) => post.autor === noticia.autor && post.id !== noticia.id)
@@ -175,7 +169,6 @@ function loadRelatedPosts() {
     const emptyMessage = document.createElement("div")
     emptyMessage.className = "empty-related-posts"
     emptyMessage.textContent = "Nenhum post relacionado encontrado"
-    relatedPosts.appendChild(emptyMessage)
     return
   }
 
@@ -227,7 +220,7 @@ function deletePost() {
 chatForm.addEventListener("submit", (event) => {
   event.preventDefault()
 
-  if (!usuario) {
+  if (!usuarioAtivo) {
     abrirModal()
     return
   }
@@ -235,10 +228,10 @@ chatForm.addEventListener("submit", (event) => {
   const mensagem = chatInput.value.trim()
   if (mensagem !== "") {
     const objMensagem = {
-      nome: usuario.nome,
+      nome: usuarioAtivo.nome,
       mensagem: mensagem,
       timestamp: new Date().toISOString(),
-      avatar: generateSmallAvatar(usuario.nome),
+      avatar: generateSmallAvatar(usuarioAtivo.nome),
     }
 
     noticia.comentarios.push(objMensagem)
@@ -362,7 +355,7 @@ function abrirModal() {
 
 // Botão de curtir
 likeBtn.addEventListener("click", () => {
-  if (!usuario) {
+  if (!usuarioAtivo) {
     abrirModal()
     return
   }

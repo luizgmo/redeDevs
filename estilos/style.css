@@ -487,6 +487,16 @@ body {
   min-width: 0;
 }
 
+.perfil{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#containerCard{
+  margin-top: 20px;
+}
+
 .user-name {
   font-weight: 600;
   color: #ffffff;
@@ -1056,18 +1066,18 @@ body {
 
 /* Add post button */
 .vh-divAddPost {
-  width: 100%;
-  max-width: 680px;
-  margin: 20px auto 24px auto;
-  padding: 0 16px;
+  margin: 10px auto;
+  padding: 0;
+  width: fit-content; /* para não ocupar a largura toda */
 }
 
 .vh-divAddPost button {
-  width: 100%;
+  width: auto; /* deixa o botão apenas do tamanho do conteúdo */
+  padding: 8px 16px; /* padding menor */
+  font-size: 14px; /* fonte menor */
   background: white;
   border: 1px solid #e0e0e0;
   border-radius: 50px;
-  padding: 16px 24px;
   color: #666;
   font-weight: 500;
   transition: all 0.3s ease;
@@ -1082,6 +1092,7 @@ body {
   transform: translateY(-1px);
 }
 
+
 /* Modal styles */
 .vh-modal-overlay {
   position: fixed;
@@ -1091,11 +1102,23 @@ body {
   height: 100%;
   background: rgba(94, 23, 235, 0.4);
   backdrop-filter: blur(4px);
-  display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1050;
 }
+
+.d-none{
+  display: none !important;
+}
+
+.d-block {
+  display: block !important;
+}
+
+.d-flex {
+  display: flex !important;
+}
+
 
 .vh-modalNoticia {
   background: white;
@@ -1569,3 +1592,76 @@ body {
     max-height: 220px;
   }
 }
+
+/*perfil*/
+
+.perfil {
+  max-width: 1000px;
+  margin: 40px auto;
+  background-color: #fff;
+  padding: 32px;
+  gap: 172px;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.profile-picture {
+  width: 120px;
+  height: 120px;
+  
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.perfil h3 {
+  margin-bottom: 8px;
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+}
+
+.perfil p {
+  margin: 4px 0;
+  color: #555;
+}
+
+#editButton {
+  margin-top: 12px;
+}
+
+#editForm {
+  margin-top: 24px;
+  border-top: 1px solid #eee;
+  padding-top: 24px;
+}
+
+.form-label {
+  font-weight: 500;
+  color: #444;
+}
+
+input.form-control {
+  border-radius: 8px;
+  padding: 10px;
+}
+
+button.btn {
+  border-radius: 8px;
+  padding: 8px 20px;
+}
+
+#editForm:not(.d-none) {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+#editForm:not(.d-none) .mb-3 {
+  margin-bottom: 14px;
+}
+
+#editForm:not(.d-none) .row {
+  margin-bottom: 14px;
+}
+

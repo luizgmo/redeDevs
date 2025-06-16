@@ -23,11 +23,11 @@ let objUsuarios = JSON.parse(localStorage.getItem("usuarios"));
 
 postar.addEventListener("click", () => {
     modal.classList.remove("d-none");
-    modal.classList.add("d-block");
+    modal.classList.add("d-flex");
 })
 
 modalFechar.addEventListener("click", () => {
-    modal.classList.remove("d-block");
+    modal.classList.remove("d-flex");
     modal.classList.add("d-none");
 })
 
@@ -106,7 +106,7 @@ btnSalvar.addEventListener("click", () => {
         data: dataCompleta,
         idusuario: usuario.id,
         views: 0,
-        likes: 0,
+        likes: [],
         comentarios: []
     }
 
@@ -117,10 +117,14 @@ btnSalvar.addEventListener("click", () => {
 
     localStorage.setItem("noticias", JSON.stringify(objNoticias));
 
-    loadNews(objNoticias);
+
+    modal.classList.remove("d-flex");
     modal.classList.add("d-none");
+
+    loadNews(objNoticias);
     
     alert("Postagem criada com sucesso");
+    
 })
 
 // Função para gerar avatar baseado no nome
@@ -343,9 +347,8 @@ function loadNews(noticias) {
 }
 
 function editPost(noticia) {
-    let modal = document.getElementById("modalAlertaEditar");
-    modal.classList.toggle("d-none");
-    document.body.classList.add("modal-active");
+    editar.classList.remove("d-none");
+    editar.classList.add("d-flex");
 
     let tituloEdit = document.getElementById("tituloEdit")
     let imgEdit = document.getElementById("imgEdit")
@@ -357,8 +360,8 @@ function editPost(noticia) {
     btnCancelar.replaceWith(novoBtnCancelar);
 
     novoBtnCancelar.addEventListener("click", () => {
-        modal.classList.add("d-none");
-        document.body.classList.remove("modal-active");
+        editar.classList.add("d-none");
+        editar.classList.remove("d-flex");
     });
 
     let btnSalvar = document.getElementById("salvarEdit");
@@ -404,17 +407,18 @@ function editPost(noticia) {
             }
         }
 
-        modal.classList.toggle("d-none")
-        document.body.classList.remove("modal-active");
         loadNews(objNoticias);
         alert("Postagem editada com sucesso");
+        editar.classList.add("d-none");
+        editar.classList.remove("d-flex");
     })
 }
 
 function deletePost(noticia) {
-    let modalExcluir = document.getElementById("modalAlertaExcluir")
-    modalExcluir.classList.remove("d-none")
-    document.body.classList.add("modal-active");
+
+    excluir.classList.remove("d-none");
+    excluir.classList.add("d-flex");
+
     let btnExcluirNt = document.getElementById("excluirNoticia")
     let btnCancelarNt = document.getElementById("cancelarExcluir")
 
@@ -432,8 +436,9 @@ function deletePost(noticia) {
                 break;
             }
         }
-        modalExcluir.classList.add("d-none")
-        document.body.classList.remove("modal-active");
+        excluir.classList.add("d-none");
+        excluir.classList.remove("d-flex");
+
     })
 }
 
