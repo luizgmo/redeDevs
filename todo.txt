@@ -1,0 +1,24 @@
+colocar o function mascaraCPF do cadastro.test no cadastro (ver se nao vai dar erro) 
+function mascaraCPF(cpf) {
+  cpf = cpf.trim();
+  let temp = "";
+
+  // Remove todos os caracteres não numéricos
+  for (let i = 0; i < cpf.length; i++) {
+    if (cpf[i] >= '0' && cpf[i] <= '9') {
+      temp += cpf[i];
+      if (temp.length == 11) break;
+    }
+  }
+
+  if (temp.length > 9) {
+    temp = temp.slice(0, 3) + '.' + temp.slice(3, 6) + '.' + temp.slice(6, 9) + '-' + temp.slice(9, 11);
+  } else if (temp.length > 6) {
+    temp = temp.slice(0, 3) + '.' + temp.slice(3, 6) + '.' + temp.slice(6);
+  } else if (temp.length > 3) {
+    temp = temp.slice(0, 3) + '.' + temp.slice(3);
+  }
+
+  document.getElementById("cpf").value = temp;
+}
+
