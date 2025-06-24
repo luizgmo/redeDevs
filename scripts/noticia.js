@@ -8,7 +8,6 @@ const views = document.getElementById("views")
 const chatInput = document.getElementById("chat-input")
 const chatForm = document.getElementById("chat-form")
 const chatMessages = document.getElementById("chat-messages")
-const commentsCount = document.getElementById("comments-count")
 const commentCount = document.getElementById("comment-count")
 const likeBtn = document.getElementById("like-btn")
 const likeCount = document.getElementById("like-count")
@@ -24,7 +23,7 @@ const userAvatar = document.getElementById("user-avatar")
 // Verificar se todos os elementos necessários existem
 const elements = [
   titulo, data, imagem, imageContainer, nomeAutor, views,
-  chatInput, chatForm, chatMessages, commentsCount, commentCount, likeBtn,
+  chatInput, chatForm, chatMessages, commentCount, likeBtn,
   likeCount, shareBtn, authorActions, authorAvatar,
   userAvatar
 ]
@@ -96,7 +95,6 @@ views.textContent = noticia.views
 nomeAutor.textContent = noticia.autor
 likeCount.textContent = noticia.likes
 commentCount.textContent = noticia.comentarios.length
-commentsCount.textContent = noticia.comentarios.length
 
 console.log("Notícia carregada:", noticia);
 
@@ -397,21 +395,6 @@ shareBtn.addEventListener("click", () => {
   }
 })
 
-// Visualização de imagem em tela cheia
-if (fullscreenBtn) {
-  fullscreenBtn.addEventListener("click", () => {
-    fullscreenImage.src = imagem.src
-    imageModal.classList.remove("d-none")
-    document.body.style.overflow = "hidden"
-  })
-}
-
-if (closeFullscreen) {
-  closeFullscreen.addEventListener("click", () => {
-    imageModal.classList.add("d-none")
-    document.body.style.overflow = "auto"
-  })
-}
 
 // Inicialização
 loadChat()
