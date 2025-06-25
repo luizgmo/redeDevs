@@ -19,6 +19,7 @@ const fullscreenImage = document.getElementById("fullscreen-image")
 const closeFullscreen = document.getElementById("close-fullscreen")
 const authorAvatar = document.getElementById("author-avatar")
 const userAvatar = document.getElementById("user-avatar")
+const chatSubmit = document.getElementById("chat-submit")
 
 // Verificar se todos os elementos necessários existem
 const elements = [
@@ -93,7 +94,7 @@ titulo.textContent = noticia.titulo
 data.textContent = formatTimeAgo(noticia.data)
 views.textContent = noticia.views
 nomeAutor.textContent = noticia.autor
-likeCount.textContent = noticia.likes
+likeCount.textContent = noticia.likes.length + " curtidas"
 commentCount.textContent = noticia.comentarios.length
 
 console.log("Notícia carregada:", noticia);
@@ -157,8 +158,19 @@ if (usuarioAtivo) {
 // Carregar posts relacionados
 function loadRelatedPosts() {
 
+
   // Filtrar posts do mesmo autor, excluindo a atual
   const authorPosts = noticias.filter((post) => post.autor === noticia.autor && post.id !== noticia.id)
+
+  // Verifica se o usuário já curtiu
+    const jaCurtiu = noticia.likes.includes(usuarioAtivo.id);
+    
+    if (jaCurtiu) {
+        likeBtn.innerHTML = '<i class="fas fa-heart" style="color: #ff3366;"></i> Curtido'
+        likeBtn.classList.add("liked")
+        likeBtn.disabled = true
+        return false; // Indica que não foi possível curtir
+    }
 
   // Limitar a 3 posts
   const relatedPostsData = authorPosts.slice(0, 3)
@@ -302,14 +314,6 @@ function loadChat() {
           </div>
           <p class="comment-text">${comentario.mensagem}</p>
         </div>
-        <div class="comment-actions">
-          <button class="comment-action-btn">
-            <i class="far fa-heart"></i> Curtir
-          </button>
-          <button class="comment-action-btn">
-            <i class="far fa-comment"></i> Responder
-          </button>
-        </div>
       </div>
     `
 
@@ -320,6 +324,7 @@ function loadChat() {
     }, index * 100)
   })
 }
+
 
 function formatCommentTime(timestamp) {
   const date = new Date(timestamp)
@@ -363,17 +368,19 @@ likeBtn.addEventListener("click", () => {
     return
   }
 
-  noticia.likes = (noticia.likes || 0) + 1
-  likeCount.textContent = noticia.likes
+  noticia.likes.push(usuarioAtivo.id);
+
+  likeCount.textContent = noticia.likes.length + " curtidas";
 
   // Atualizar localStorage
   const noticiasAtualizadas = JSON.parse(localStorage.getItem("noticias")) || []
   const index = noticiasAtualizadas.findIndex((n) => n.id === noticia.id)
+  
   if (index !== -1) {
     noticiasAtualizadas[index] = noticia
     localStorage.setItem("noticias", JSON.stringify(noticiasAtualizadas))
   }
-
+  console.log("Notícias atualizadas:", noticiasAtualizadas);
   // Atualizar UI
   likeBtn.innerHTML = '<i class="fas fa-heart" style="color: #ff3366;"></i> Curtido'
   likeBtn.classList.add("liked")
