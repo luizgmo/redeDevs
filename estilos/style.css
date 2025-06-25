@@ -557,18 +557,23 @@ body {
 
 .post-image-container {
   width: 100%;
-  border-radius: 0.5rem;
+  max-width: 100%;
+  border-radius: 0.8rem;
   overflow: hidden;
-  margin-bottom: 1rem;
-  margin: 0 -20px 0 -20px;
+  margin: 1rem auto;
+  padding: 0 10px;
+  box-sizing: border-box;
 }
 
 .post-image {
   width: 100%;
   max-height: 400px;
+  height: auto;
   object-fit: cover;
-  transition: transform 0.3s ease;
+  object-position: center;
   display: block;
+  margin: 0 auto;
+  transition: transform 0.3s ease;
 }
 
 .linkedin-post:hover .post-image {
