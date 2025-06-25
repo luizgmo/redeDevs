@@ -164,6 +164,8 @@ function formatTimeAgo(dateString) {
 function loadNews(noticias) {
     containerCard.innerHTML = "";
 
+
+
     let inicio = (paginaAtual - 1) * itensPorPagina;
     let fim = inicio + itensPorPagina;
 
@@ -171,7 +173,7 @@ function loadNews(noticias) {
 
     for (let noticia of noticiasPaginadas) {
         // Inicializar propriedades se não existirem
-        noticia.likes = noticia.likes || 0;
+        noticia.likes = noticia.likes || [];
         noticia.comentarios = noticia.comentarios || [];
 
         let card = document.createElement("div");
@@ -259,7 +261,7 @@ function loadNews(noticias) {
 
         let likesCount = document.createElement("span");
         likesCount.classList.add('stats-item');
-        likesCount.innerHTML = `<i class="fas fa-heart"></i> ${noticia.likes}`;
+        likesCount.innerHTML = `<i class="fas fa-heart"></i> ${noticia.likes.length} Curtidas`;
 
         let commentsCount = document.createElement("span");
         commentsCount.classList.add('stats-item');
@@ -289,13 +291,23 @@ function loadNews(noticias) {
         sendBtn.classList.add('action-btn');
         sendBtn.innerHTML = '<i class="far fa-paper-plane"></i> Enviar';
 
+        const jaCurtiu = noticia.likes.includes(usuario.id);
+
+        console.log(jaCurtiu);
+    
+        if (jaCurtiu) {
+            likeBtn.innerHTML = '<i class="fas fa-heart" style="color: #ff3366;"></i> Curtido'
+            likeBtn.classList.add("liked")
+            likeBtn.disabled = true
+        }
+
         // Event listeners para ações
         likeBtn.addEventListener("click", (e) => {
             e.stopPropagation();
             if (usuario) {
-                noticia.likes++;
-                likesCount.innerHTML = `<i class="fas fa-heart"></i> ${noticia.likes}`;
-                likeBtn.innerHTML = '<i class="fas fa-heart" style="color: #ff3366;"></i> Curtir';
+                noticia.likes.push(usuario.id);
+                likesCount.innerHTML = `<i class="fas fa-heart"></i> ${noticia.likes.length} Curtidas`;
+                likeBtn.innerHTML = '<i class="fas fa-heart" style="color: #ff3366;"></i> Curtido';
                 likeBtn.disabled = true;
                 localStorage.setItem("noticias", JSON.stringify(objNoticias));
             } else {
