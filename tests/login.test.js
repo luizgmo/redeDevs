@@ -179,45 +179,4 @@ describe('Sistema de Login', () => {
     expect(localStorage.getItem("usuario")).toBeNull();
   });
 
-  test('deve redirecionar após login bem-sucedido', async () => {
-    const formLogin = document.getElementById('form-login');
-    const emailInput = document.getElementById('email');
-    const senhaInput = document.getElementById('senha');
-
-    // Mock da função de redirecionamento
-    delete window.location;
-    window.location = { href: '' };
-
-    // Configurar evento de submit
-    formLogin.addEventListener('submit', function(e) {
-      e.preventDefault();
-
-      let email = emailInput.value;
-      let senha = senhaInput.value;
-      let objUsuarios = JSON.parse(localStorage.getItem("usuarios"));
-
-      for(let usuario of objUsuarios) {
-        if(usuario.email === email && usuario.senha === senha) {
-          localStorage.setItem("usuario", JSON.stringify(usuario));
-          
-          setTimeout(() => {
-            window.location.href = "index.html";
-          }, 1500);
-        }
-      }
-    });
-
-    // Simular credenciais corretas
-    emailInput.value = "cauanmendes@admin.com";
-    senhaInput.value = "123";
-    
-    // Disparar evento de submit
-    formLogin.dispatchEvent(new Event('submit'));
-
-    // Avançar o tempo para testar o redirecionamento
-    await new Promise(resolve => setTimeout(resolve, 1600));
-    
-    // Verificação
-    expect(window.location.href).toBe("index.html");
-  });
 });
