@@ -47,12 +47,12 @@ fileInput.addEventListener('change', () => {
         const file = fileInput.files[0];
         const fileName = file.name.toLowerCase();
         const fileType = file.type;
-        
+
         const validFormats = ["image/jpeg", "image/jpg", "image/gif", "image/bmp", "image/png"];
         const validExtensions = [".jpg", ".jpeg", ".gif", ".bmp", ".png"];
-        
+
         const extension = fileName.substring(fileName.lastIndexOf("."));
-        
+
         if (!validFormats.includes(fileType) && !validExtensions.includes(extension)) {
             alert("Erro: formato de arquivo inválido");
         }
@@ -63,6 +63,7 @@ btnSalvar.addEventListener("click", () => {
     let tituloValor = document.getElementById("titulo").value;
     let imgFile = fileInput.files[0];
 
+    // Validações do título (mantidas iguais)
     if (!tituloValor || tituloValor.trim() === "") {
         alert('Erro: legenda é obrigatória');
         return;
@@ -74,6 +75,7 @@ btnSalvar.addEventListener("click", () => {
         return;
     }
 
+    // Validação da imagem (se existir)
     if (imgFile) {
         const fileName = imgFile.name.toLowerCase();
         const fileType = imgFile.type;
@@ -83,14 +85,26 @@ btnSalvar.addEventListener("click", () => {
         
         const extension = fileName.substring(fileName.lastIndexOf("."));
         
-        if (!validFormats.includes(fileType) && !validExtensions.includes(extension)) {
+        if (!validFormats.includes(fileType) || !validExtensions.includes(extension)) {
             alert("Erro: formato de arquivo inválido");
             return;
         }
+
+        // Processa a imagem como Base64
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            saveNewsItem(tituloValor, e.target.result);
+        };
+        reader.readAsDataURL(imgFile);
+    } else {
+        // Cria a notícia sem imagem
+        saveNewsItem(tituloValor, "");
     }
+});
 
-    data = new Date();
-
+function saveNewsItem(titulo, imgBase64) {
+    // Gera dados da notícia
+    const data = new Date();
     let dia = String(data.getDate()).padStart(2, '0');
     let mes = String(data.getMonth() + 1).padStart(2, '0');
     let ano = data.getFullYear();
@@ -100,9 +114,9 @@ btnSalvar.addEventListener("click", () => {
 
     let objNoticia = {
         id: idUnico,
-        titulo: tituloValor,
+        titulo: titulo,
         autor: usuario.nome,
-        img: imgFile ? URL.createObjectURL(imgFile) : "",
+        img: imgBase64, // Armazena a imagem como Base64 (ou string vazia)
         data: dataCompleta,
         idusuario: usuario.id,
         views: 0,
@@ -110,22 +124,23 @@ btnSalvar.addEventListener("click", () => {
         comentarios: []
     }
 
+    // Adiciona à lista e salva no localStorage
     objNoticias.push(objNoticia);
+    localStorage.setItem("noticias", JSON.stringify(objNoticias));
 
+    // Limpa o formulário
     document.getElementById("titulo").value = "";
     fileInput.value = "";
 
-    localStorage.setItem("noticias", JSON.stringify(objNoticias));
-
-
+    // Fecha o modal
     modal.classList.remove("d-flex");
     modal.classList.add("d-none");
 
+    // Recarrega as notícias
     loadNews(objNoticias);
     
     alert("Postagem criada com sucesso");
-    
-})
+}
 
 // Função para gerar avatar baseado no nome
 function generateAvatar(name) {
@@ -138,7 +153,7 @@ function formatTimeAgo(dateString) {
     const now = new Date();
     const diffMs = now - postDate;
     const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
-    
+
     if (diffDays === 0) return 'hoje';
     if (diffDays === 1) return '1d';
     if (diffDays < 7) return `${diffDays}d`;
@@ -188,17 +203,17 @@ function loadNews(noticias) {
 
         let moreOptions = document.createElement("div");
         moreOptions.classList.add('more-options');
-        
+
         // Adicionar botões de edição/exclusão se for o autor
         if (usuario && usuario.id === noticia.idusuario) {
             let editBtn = document.createElement("i");
             editBtn.classList.add("fas", "fa-edit", "edit-icon");
             editBtn.title = "Editar";
-            
+
             let deleteBtn = document.createElement("i");
             deleteBtn.classList.add("fas", "fa-trash", "delete-icon");
             deleteBtn.title = "Excluir";
-            
+
             moreOptions.appendChild(editBtn);
             moreOptions.appendChild(deleteBtn);
 
@@ -379,24 +394,24 @@ function editPost(noticia) {
             alert('Erro: legenda excede limite');
             return;
         }
-        
+
         let imgFile = null;
         if (imgEdit.type === "file" && imgEdit.files.length > 0) {
             imgFile = imgEdit.files[0];
             const fileName = imgFile.name.toLowerCase();
             const fileType = imgFile.type;
-            
+
             const validFormats = ["image/jpeg", "image/jpg", "image/gif", "image/bmp", "image/png"];
             const validExtensions = [".jpg", ".jpeg", ".gif", ".bmp", ".png"];
-            
+
             const extension = fileName.substring(fileName.lastIndexOf("."));
-            
+
             if (!validFormats.includes(fileType) && !validExtensions.includes(extension)) {
                 alert("Erro: formato de arquivo inválido");
                 return;
             }
         }
-        
+
         for (let i of objNoticias) {
             if (i.id === noticia.id) {
                 i.titulo = tituloEdit.value;
