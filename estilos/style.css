@@ -1271,6 +1271,7 @@ body {
 }
 
 #chat-input {
+  width: 350px;
   flex: 1;
   border-radius: 24px;
   padding: 12px 20px;
@@ -1360,7 +1361,7 @@ body {
   .linkedin-post {
     margin-bottom: 16px;
     border-radius: 8px;
-    max-width: 450px;
+    max-width: 100%;
   }
 
   .post-header {

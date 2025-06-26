@@ -445,8 +445,8 @@ function deletePost(noticia) {
     let btnCancelarNt = document.getElementById("cancelarExcluir")
 
     btnCancelarNt.addEventListener("click", () => {
-        modalExcluir.classList.add("d-none")
-        document.body.classList.remove("modal-active");
+        excluir.classList.add("d-none")
+        excluir.classList.remove("d-flex");
     })
 
     btnExcluirNt.addEventListener("click", () => {
