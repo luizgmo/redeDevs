@@ -227,53 +227,67 @@ function deletePost() {
 }
 
 // Envio de comentários
-chatForm.addEventListener("submit", (event) => {
-  event.preventDefault()
+chatForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
 
   if (!usuarioAtivo) {
-    abrirModal()
-    return
+    abrirModal();
+    return;
   }
 
-  const mensagem = chatInput.value.trim()
+  const mensagem = chatInput.value.trim();
   if (mensagem !== "") {
-    const objMensagem = {
-      nome: usuarioAtivo.nome,
-      mensagem: mensagem,
-      timestamp: new Date().toISOString(),
-      avatar: generateSmallAvatar(usuarioAtivo.nome),
+    try {
+      // 1. Criar o objeto do comentário
+      const objMensagem = {
+        idUsuario: usuarioAtivo.id,
+        nome: usuarioAtivo.nome,
+        mensagem: mensagem,
+        timestamp: new Date().toISOString(),
+        avatar: usuarioAtivo.fotoperfil || generateSmallAvatar(usuarioAtivo.nome),
+      };
+
+      // 2. Adicionar o comentário à notícia
+      noticia.comentarios.push(objMensagem);
+
+      // 3. Atualizar o localStorage
+      const noticiasAtualizadas = JSON.parse(localStorage.getItem("noticias")) || [];
+      const index = noticiasAtualizadas.findIndex((n) => n.id === noticia.id);
+      
+      if (index !== -1) {
+        noticiasAtualizadas[index] = noticia;
+        localStorage.setItem("noticias", JSON.stringify(noticiasAtualizadas));
+      }
+
+      // 4. Limpar o campo de input
+      chatInput.value = "";
+
+      // 5. Atualizar o contador de comentários
+      commentCount.textContent = noticia.comentarios.length;
+
+      // 6. Atualizar a exibição dos comentários (AGORA EM TEMPO REAL)
+      await loadChat(); // Adicionamos await para garantir que termine antes do feedback
+
+      // Feedback visual
+      chatInput.classList.add("success-flash");
+      setTimeout(() => {
+        chatInput.classList.remove("success-flash");
+      }, 500);
+
+    } catch (error) {
+      console.error("Erro ao adicionar comentário:", error);
+      chatInput.classList.add("error-flash");
+      setTimeout(() => {
+        chatInput.classList.remove("error-flash");
+      }, 500);
     }
-
-    noticia.comentarios.push(objMensagem)
-
-    // Atualizar localStorage
-    const noticiasAtualizadas = JSON.parse(localStorage.getItem("noticias")) || []
-    const index = noticiasAtualizadas.findIndex((n) => n.id === noticia.id)
-    if (index !== -1) {
-      noticiasAtualizadas[index] = noticia
-      localStorage.setItem("noticias", JSON.stringify(noticiasAtualizadas))
-    }
-
-    chatInput.value = ""
-
-    // Atualizar contadores
-    commentCount.textContent = noticia.comentarios.length
-    commentsCount.textContent = noticia.comentarios.length
-
-    // Feedback visual
-    chatInput.classList.add("success-flash")
-    setTimeout(() => {
-      chatInput.classList.remove("success-flash")
-    }, 500)
-
-    loadChat()
   } else {
-    chatInput.classList.add("error-flash")
+    chatInput.classList.add("error-flash");
     setTimeout(() => {
-      chatInput.classList.remove("error-flash")
-    }, 500)
+      chatInput.classList.remove("error-flash");
+    }, 500);
   }
-})
+});
 
 // Carregamento de comentários
 function loadChat() {
@@ -406,3 +420,5 @@ shareBtn.addEventListener("click", () => {
 // Inicialização
 loadChat()
 loadRelatedPosts()
+
+module.exports = { loadChat };

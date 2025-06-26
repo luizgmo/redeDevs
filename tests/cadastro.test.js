@@ -2,8 +2,6 @@
  * @jest-environment jsdom
  */
 
-// Mock global do localStorage
-
 const localStorageMock = (function() {
   let store = {};
   return {
@@ -21,7 +19,6 @@ const localStorageMock = (function() {
 
 global.localStorage = localStorageMock;
 
-// Recriação das funções do seu código
 function mascaraNome(nome) {
   let texto = nome;
   let textoF = "";
@@ -39,7 +36,6 @@ function mascaraCPF(cpf) {
   cpf = cpf.trim();
   let temp = "";
 
-  // Remove todos os caracteres não numéricos
   for (let i = 0; i < cpf.length; i++) {
     if (cpf[i] >= '0' && cpf[i] <= '9') {
       temp += cpf[i];
@@ -47,7 +43,6 @@ function mascaraCPF(cpf) {
     }
   }
 
-  // Aplica a máscara conforme o tamanho
   if (temp.length > 9) {
     temp = temp.slice(0, 3) + '.' + temp.slice(3, 6) + '.' + temp.slice(6, 9) + '-' + temp.slice(9, 11);
   } else if (temp.length > 6) {
@@ -159,10 +154,8 @@ function mascaraSenha(senha) {
   return "";
 }
 
-// Testes
 describe('Testes de Cadastro', () => {
   beforeEach(() => {
-    // Configuração do DOM antes de cada teste
     document.body.innerHTML = `
       <form id="form-cadastro">
         <input id="nome" />
@@ -176,7 +169,6 @@ describe('Testes de Cadastro', () => {
       </form>
     `;
     
-    // Resetar localStorage
     localStorage.clear();
     localStorage.setItem("usuarios", JSON.stringify([]));
   });
@@ -269,7 +261,6 @@ describe('Testes de Cadastro', () => {
 
   describe('Formulário de Cadastro', () => {
     test('deve impedir envio com campos inválidos', () => {
-      // Simula campos inválidos
       document.getElementById('nome').value = 'Jo';
       document.getElementById('cpf').value = '123';
       document.getElementById('telefone').value = '11';
@@ -278,7 +269,6 @@ describe('Testes de Cadastro', () => {
       const event = new Event('submit');
       event.preventDefault = jest.fn();
       
-      // Adiciona o event listener manualmente para o teste
       form.addEventListener('submit', (e) => {
         e.preventDefault();
       });
@@ -289,14 +279,12 @@ describe('Testes de Cadastro', () => {
     });
 
     test('deve cadastrar usuário com campos válidos', () => {
-      // Configurar campos válidos
       document.getElementById('nome').value = 'João Silva';
       document.getElementById('cpf').value = '123.456.789-01';
       document.getElementById('telefone').value = '(11) 98765-4321';
       document.getElementById('email').value = 'joao@teste.com';
       document.getElementById('senha').value = 'Senha123!';
       
-      // Simular eventos blur para setar os erros
       document.getElementById('erroEmail').textContent = mascaraEmail(document.getElementById('email').value);
       document.getElementById('erroSenha').textContent = mascaraSenha(document.getElementById('senha').value);
       
@@ -304,11 +292,9 @@ describe('Testes de Cadastro', () => {
       const event = new Event('submit');
       event.preventDefault = jest.fn();
       
-      // Adiciona o event listener manualmente para o teste
       form.addEventListener('submit', (e) => {
         e.preventDefault();
         
-        // Simula o comportamento do formulário
         document.getElementById('mensagem').textContent = 'Cadastro Bem-Sucedido!';
         const usuarios = [{
           id: Date.now(),

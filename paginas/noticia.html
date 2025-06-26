@@ -14,12 +14,26 @@
 
 <body class="vh-fundo">
   <nav class="navbar" id="navbar">
-    <div class="nav-container">
-      <div class="nav-left">
-        <a href="index.html" class="nav-brand">RedeDevs</a>
-        <div class="nav-links" id="navLinks">
-          <a href="sobre.html" class="nav-link">Sobre Portal</a>
-          <a href="login.html" class="nav-link" id="login">Login</a>
+      <div class="nav-container">
+        <div class="nav-left">
+          <a href="index.html" class="nav-brand">RedeDevs</a>
+          <div class="nav-links" id="navLinks">
+            <div class="search-container">
+              <input
+                type="search"
+                placeholder="Pesquisar..."
+                class="search-input"
+                id="pesquisa"
+              />
+              <button class="search-btn" id="btnPesquisa">Buscar</button>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+              <i class="fas fa-bars"></i>
+            </button>
+          </div>
+        </div>
+        <div class="nav-right">
+          <a href="sobre.html" class="nav-link">Sobre</a>
           <div class="nav-dropdown" id="perfil">
             <a href="#" class="nav-link dropdown-toggle" id="perfilToggle">
               <i class="fas fa-user"></i> Perfil
@@ -37,27 +51,48 @@
               </a>
             </div>
           </div>
+          <a href="login.html" class="nav-link" id="login">Login</a>
         </div>
       </div>
-      <div class="nav-right">
-        <div class="search-container">
-          <input type="search" placeholder="Pesquisar..." class="search-input" id="pesquisa">
-          <button class="search-btn" id="btnPesquisa">Buscar</button>
-        </div>
-        <button class="mobile-menu-btn" id="mobileMenuBtn">
-          <i class="fas fa-bars"></i>                                                                                         
-        </button>
-      </div>
-    </div>
-  <nav>                                                                                                                                                    
+    </nav>                                                                                                                                               
 
 <div class="container mt-4">
   <!-- Botão de voltar -->
   <div class="mb-3">
-    <a href="index.html" class="btn btn-outline-primary btn-sm">
-      <i class="fas fa-arrow-left me-2"></i>Voltar para o feed
-    </a>
-  </div>
+  <a href="index.html" class="btn custom-back-btn">
+    <i class="fas fa-arrow-left"></i>
+    <span>Voltar</span>
+  </a>
+</div>
+<style>
+/* Botão Voltar customizado */
+.custom-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #fff !important;
+  font-weight: 500;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 50px;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.12);
+  padding: 0.6rem 1.6rem;
+  margin-top: 1.5rem; /* Aqui está a margin top */
+  text-decoration: none !important; /* Remove sublinhado */
+  transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+}
+.custom-back-btn:hover, .custom-back-btn:focus {
+  background: linear-gradient(90deg, #1e40af, #3b82f6);
+  color: #fff !important;
+  text-decoration: none !important;
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.18);
+  transform: translateY(-2px) scale(1.03);
+}
+.custom-back-btn i {
+  font-size: 1.2rem;
+}
+</style>
+
 
   <!-- Container principal estilo LinkedIn -->
   <div class="row justify-content-center">
