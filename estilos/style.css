@@ -561,7 +561,7 @@ body {
   border-radius: 0.8rem;
   overflow: hidden;
   margin: 1rem auto;
-  padding: 0 10px;
+  padding: 0 0px;
   box-sizing: border-box;
 }
 
@@ -606,6 +606,7 @@ body {
   padding: 0.5rem;
   border-top: 1px solid #334155;
 }
+
 
 .action-btn {
   flex: 1;
@@ -1602,11 +1603,15 @@ body {
 .perfil {
   max-width: 1000px;
   margin: 40px auto;
-  background-color: #fff;
+  background-color: #0f172a;
   padding: 32px;
   gap: 172px;
   border-radius: 16px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+#profileName, #profileEmail, #profileTelefone{
+  color: #fff;
 }
 
 .profile-picture {

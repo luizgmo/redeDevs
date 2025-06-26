@@ -162,16 +162,15 @@ function formatTimeAgo(dateString) {
 }
 
 function loadNews(noticias) {
+    noticias.sort((a, b) => b.id - a.id);
     containerCard.innerHTML = "";
-
-
 
     let inicio = (paginaAtual - 1) * itensPorPagina;
     let fim = inicio + itensPorPagina;
-
     let noticiasPaginadas = noticias.slice(inicio, fim);
 
     for (let noticia of noticiasPaginadas) {
+        const autor = getDadosUsuario(noticia.idusuario);
         // Inicializar propriedades se não existirem
         noticia.likes = noticia.likes || [];
         noticia.comentarios = noticia.comentarios || [];
@@ -185,7 +184,7 @@ function loadNews(noticias) {
 
         let avatar = document.createElement("img");
         avatar.classList.add('user-avatar');
-        avatar.src = generateAvatar(noticia.autor);
+        avatar.src = autor.fotoperfil || generateAvatar(autor.nome);
         avatar.alt = noticia.autor;
 
         let userInfo = document.createElement("div");
@@ -193,11 +192,8 @@ function loadNews(noticias) {
 
         let userName = document.createElement("h6");
         userName.classList.add('user-name');
-        userName.textContent = noticia.autor;
+        userName.textContent = autor.nome;
 
-        let userTitle = document.createElement("p");
-        userTitle.classList.add('user-title');
-        userTitle.textContent = "Desenvolvedor | JavaScript | React";
 
         let postTime = document.createElement("span");
         postTime.classList.add('post-time');
@@ -336,7 +332,6 @@ function loadNews(noticias) {
         // Montar estrutura do card
         postHeader.appendChild(avatar);
         userInfo.appendChild(userName);
-        userInfo.appendChild(userTitle);
         userInfo.appendChild(postTime);
         postHeader.appendChild(userInfo);
         postHeader.appendChild(moreOptions);
@@ -551,3 +546,8 @@ historico.addEventListener("click", () => {
         modalH.classList.add('d-none')
     })
 })
+
+function getDadosUsuario(idUsuario) {
+    const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+    return usuarios.find(u => u.id === idUsuario) || { nome: "Usuário Desconhecido", fotoperfil: "" };
+}
